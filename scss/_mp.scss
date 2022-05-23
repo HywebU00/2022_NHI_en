@@ -1,0 +1,11 @@
+h2.blockHeader{
+  margin: 0 auto;
+  font-size: 2.1rem; font-variant: small-caps; text-align: center;
+  letter-spacing: 1px;
+}
+
+@import "_videoBookFlow"; // Featured Videos 影音專區 + Annual Report 年報
+@import "_newsList";      // Press Room 最新消息
+@import "_dataflow";      // What You Need To Know 核心服務
+@import "_timeLine";      // timeline 健保發展時間點
+@import "_contactInfo";   // Contact Us 地圖與聯絡資訊

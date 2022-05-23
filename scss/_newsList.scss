@@ -1,0 +1,40 @@
+// 首頁：Press Room 最新消息
+.newsList{
+  padding: 60px 0; 
+  background-color: $grayLight; font-size: 1.125em;
+  ul{
+    width: $mobileWidth; margin: 15px auto 0; padding: 0;
+    list-style: none; line-height: 1.5;
+  }
+  li{
+    margin: 0; padding: 0;
+    border-bottom: 1px solid #fff;
+    &:last-child { border: none;}
+    a{
+      display: flex; flex-flow: row nowrap; align-items: center;
+      padding: 1.2em 0;
+      text-decoration: none; color: $fontColor; transition: .2s;
+      &:hover, &:focus{
+        background-color: #fff;
+      }
+    }
+    p{ margin: 0; padding: 0 .5em; }
+    time{
+      flex: 0 0 3.5em; position: relative; padding: 0 0 1em;
+      font-size: 1.3em; text-align: center; color: $secondaryColor;
+      .year{
+        position: absolute; bottom: 0; left: 0; width: 100%;
+        font-size: .85em;
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    padding: 80px 0; 
+    ul {width: $normalWidth;}
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    ul {width: $wwMaximum*.82;}
+  }
+}

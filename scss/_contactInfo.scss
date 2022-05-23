@@ -1,0 +1,127 @@
+// 首頁：Contact Us 地圖與聯絡資訊--------------------------------------
+.contactInfo{
+  position: relative; padding-top: 50px; overflow: hidden;
+  background-color: $grayLight;
+ 
+  .blockHeader{ display: inline-block; padding: 10px 4vw; text-align: left;}
+  .contactUsBy{float: right; margin-bottom: 10px; margin-right: 4vw;}
+  
+  .container{ clear: both; position: relative; width: 100vw;  padding: 90px 4vw 70px;}
+  .mapList{
+    position: absolute; left: 0; top: 0; width: 100vw; min-height: 120vw;
+    
+    .map{ 
+      position: absolute; left: 0; top: 0;
+      img{
+        display: block;  width: 100%; height: 120vw; object-fit: cover;
+      }
+    }
+  }
+
+  .cardBox{
+    position: relative; width: 80vw;max-width: 400px; padding-bottom: 15rem;
+    background: #fff; box-shadow: rgba(0,0,0,.25) 0 0 30px;
+    font-size: 1.125rem;
+
+    .cardList{ display: block; position: relative;}
+
+    .infoCard{
+       padding: 2.8rem 50px 3.2rem;
+
+      h3{ font-size: 2rem; margin: 0 auto 1.6rem;}
+      ul{list-style: none; margin: 0; padding: 0;line-height: 1.5;}
+      li{
+        &+li{ margin-top: 1em;}
+        &::before{
+          content: attr(title) ':'; display: inline-block; margin-right: .5em;
+          color: $fontColorLight;
+        }
+        &[title="Address"]::before{display: block;}
+      }
+    }
+
+    .slick-arrow{ z-index: 9; transform: translateY(-20%);
+      &.slick-prev{ left: -16px;}
+      &.slick-next{ right: -16px;}
+    }
+
+    .slick-dots{
+      position: absolute; bottom: .6rem;left: 40px; width:calc(100% - 80px);
+    }
+
+    .base{
+      position: absolute; left: 0; bottom: 0; width: 100%;
+      padding:4.5rem 40px .5rem; margin: 0; height: 14rem;
+      line-height: 1.3; font-weight: bold;
+      background-color: $assistant1; color: $fontColorDark;
+      @extend %grandientV;
+      p { margin: 0;
+        &:first-child{font-size: 1.125em; margin-bottom: 0.6em;}
+        &[title]::before{
+          content: attr(title); display: inline-block; margin-right: .5em;
+        }
+        & + p{ margin-top: .3em;}
+      }
+      &::before{
+        content: ''; position: absolute; top: 15px; left:calc(50% - 26px);
+        width: 52px; height: 52px;
+        background: url(../images/icon_chat.png) no-repeat center top;
+        background-size: 52px;
+      }
+    }
+  }
+
+
+  @media screen and (min-width: $wwNormal){
+    .blockHeader{
+      display: block; margin: 0 calc(5vw + 180px) 0 9vw;
+      padding-bottom:40px; text-align: center;
+    }
+    .contactUsBy{ float: none; margin: 0; position: absolute; right: 5vw; top: 50px;}
+
+    .container{ padding-left: 9vw; padding-right: 9vw; }
+
+    .mapList{
+      .map{ position: absolute; left: 0; top: 0;
+        img{ height: 62.5vw; }
+      }
+    }
+
+    .cardBox{
+      .slick-dots{ bottom: 0; }
+    }
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    .blockHeader{
+      margin-right:  calc(50vw - #{$wwMaximum}*.45 + 180px);
+    }
+    .contactUsBy{ right: calc(50vw - #{$wwMaximum}*.45);}
+  }
+
+}
+
+//社群圖示
+.contactUsBy{
+  // position: absolute; right: 4vw; top: 45px;
+  ul{ list-style: none; margin: 0; padding: 0; display: flex;}
+  li{
+    flex: 0 0 48px;width: 48px; height: 48px;
+    margin: 5px; padding: 0;
+    a {
+      display: block; height: 100%; border-radius: 50%;
+      background: #fff url(../images/icon_sns.png) no-repeat center top;
+      background-size: 32px; transition: .2s;
+    }
+    &.facebook a{ background-color: #3B5998; background-position: center 0;
+      &:hover, &:focus{ box-shadow:#fff 0 0 0 1px inset, #3B5998 0 0 0 3px;}
+    }
+    &.youtube a{ background-color: #E80C02; background-position: center -50px;
+      &:hover, &:focus{ box-shadow: #fff 0 0 0 1px inset, #E80C02 0 0 0 3px;}
+    }
+    &.rss a{ background-color: #fe7200;background-position: center -100px;
+      &:hover, &:focus{ box-shadow: #fff 0 0 0 1px inset, #fe7200 0 0 0 3px;}
+    }
+
+  }
+}

@@ -1,0 +1,76 @@
+// 首頁：timeline 健保發展時間點 --------------------------------------
+.timeLine{
+  position: relative; margin:0; z-index: 19;
+
+  .container{ // 為設計稿排版而加的元件
+    position: relative; padding: 80px 0 20px; width: 100vw; overflow: hidden;
+    background: #fafcfc;; box-shadow: rgba(0,0,0,.3) 0 0 20px;
+    &::before{
+      content: ''; position: absolute; left: 0; top: 0; 
+      height: 18px; width: 40vw; @extend %grandient;
+    }
+  }
+
+  .blockHeader{ padding: 0 0 50px;}
+
+  .eventList{
+    display: flex; margin: 0; padding: 0 0 70px;
+    
+    .event{
+      position: relative; flex: 0 0 auto; margin: 0; padding: 15px 24px;
+      &::before{ // 水平線
+        content: ''; position: absolute; top: calc(1.5rem + 37px); left: 0; right: 0;
+        height: 1px; background-color: $primaryColor;
+      }
+      &:first-child::before{ left: 30px;} //第一年
+      &:last-child{ //最後一年
+        &::before{ right: 15px;}
+        &::after{ 
+          content: ''; position: absolute; right: 12px; 
+          width: 5px; height: 5px; top:  calc(1.5rem + 35px);
+          background-color: #fff; border-radius: 50%;
+          box-shadow: $primaryColor 0 0 0 2px;
+        }
+      }
+
+      time{
+        display: block; position: relative; z-index: 9;
+        padding: 0 0 48px; margin: 0;
+        font-size: 1.5rem; font-weight: bold; line-height: 1;
+        &::after{
+          content: ''; position: absolute; left: 15px; bottom: 22px;
+          width: 8px; height: 8px; border-radius: 50%;
+          background-color: $primaryColor;
+          background-image: linear-gradient($assistant1 20%, darken($primaryColor, 25%) 100%);
+          box-shadow: #fff 0 0 0 13px, $gray 0 0 20px 13px;
+        }
+      }
+      p{ line-height: 1.5; margin: 0; }
+
+    }
+
+    .slick-arrow{
+      top: auto; transform: none; bottom: 5px;
+      &.slick-prev{ left: 15px;}
+      &.slick-next{ right: 15px;}
+    }
+  }
+
+  @media screen and (min-width: $wwMedium){
+    padding: 50px 0;
+    &::after{
+      content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 150px;
+      background-color: $grayLight;
+    }
+
+    .container{ margin-left: 4vw; width: 96vw; z-index: 9; }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    .container{margin-left: 9vw; width: 91vw;}
+    .eventList{
+      .event{ flex-basis: 20%; }
+    }
+  }
+
+}

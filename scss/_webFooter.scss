@@ -1,0 +1,249 @@
+// webFooter 頁腳
+.webFooter{
+  position: relative; padding:0; margin: 0 auto;
+  
+  a{text-decoration: none; }
+
+  .base{
+    position: relative; padding:40px 4vw;
+    font-size: .875em; line-height: 1.5; background: $grayLight;
+
+    p{ margin: 0;}
+  }
+
+  // 隱私權政策、...、版權宣告
+  .copyright{ 
+    margin: 0 0 2em; padding:5px 0 0 70px; min-height: 60px;
+    background: url(../images/nhiLogo.png) no-repeat 0 0;
+    background-size: 60px;
+    ul{ list-style: none; margin: 0 0 .3em; padding: 0;line-height: 1.1; overflow: hidden;}
+    li{ float: left; position: relative;
+      padding: 0 .8em 0 0; margin:0 .8em .4em 0; 
+      a{ 
+        display: block; color: $linkColor; border-bottom: 1px solid transparent;
+        &:hover, &:focus{border-color: $linkColor;}
+      }
+
+      &::after{content: ''; position: absolute; right: 0; top: .2em; ; height: .8em; width: 1px; background-color: $linkColor; vertical-align: middle;}
+
+      &:last-child::after{display: none;}
+    }
+    // p{ margin:1em 0 0;}
+  }
+
+
+  // egov, 無障礙標章，訪客人次
+  .others{ 
+    list-style: none; margin: 0; padding: 0; overflow: hidden;
+    li{
+      a, img{ display: block;}
+    }
+    .egov{ float: left; margin-right: 12px;
+      img{ width: 43px;}
+    }
+    .badgeA{ float: left;
+      img{ width: 150px;}
+    }
+    .visited{
+      clear: both; padding: 1em 0 0; white-space: nowrap;
+      font-size: 1.125em;
+      &::before{
+        content: attr(title) ':'; display: inline-block; margin-right: .3em;
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwMedium){
+
+    .others{
+      .badgeA{margin-right: 12px;}
+      .visited{ clear: none;}
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    .base{ 
+      padding-left: 9vw; padding-right: 9vw;
+      display: flex; flex-flow: row nowrap; justify-content:space-between; 
+
+      .copyright{
+        flex: 0 1 calc(100% - 230px);
+        p{margin-top: 0;}
+      }
+      .others{
+        flex: 0 0 210px;
+        .badgeA{margin-right: 0;}
+        .visited{ clear: both; width: 100%;}
+      }
+    }
+
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    .base{
+      padding-left: calc(50vw - #{$wwMaximum}*.41);
+      padding-right: calc(50vw - #{$wwMaximum}*.41);
+    }
+  }
+}
+
+
+// 控制 fat footer 開合的 button
+.fatFootCtrl{
+  position: absolute; right:4vw; top: 30px; z-index: 9;
+  width: 35px; height: 35px; padding: 0; border-radius: 50%;
+  background: #fff;
+  // background: $primaryColor;
+  text-indent: -10em; overflow: hidden; border: none;
+  transition: background .2s;
+
+  &:hover, &:focus{ 
+    box-shadow: $assistant1 0 0 0 2px; outline: none;
+    background-color: $assistant1;
+    &::before{border-color: #fff;}
+  }
+  // &:focus{box-shadow: $btnBg2 0 0 0 2px}
+  &::before{
+    content: '';position: absolute; left: 50%; top: 50%;
+    width: 9px; height: 9px; margin: -4px auto auto -6px;
+    border: 3px solid #000; border-right: none; border-bottom: none;
+    transform: rotate(45deg); transition:transform .4s;
+  }
+
+  &.closed{
+    &::before{transform: rotate(225deg); margin-top: -8px;}
+  }
+
+  @media screen and (min-width: $wwNormal){
+    right: 9vw;
+  }
+  @media screen and (min-width: $wwMaximum){
+    right: calc(50vw - #{$wwMaximum}*.41); 
+  }
+}
+
+
+// 頁腳的選單
+.siteTree{ position: relative; z-index: 2;
+  margin: 0 auto; padding: 80px 0 60px; font-size: 1.2rem;
+  background: $secondaryColor; color: $fontInvert;
+  ul{list-style: none; margin: 0 auto; padding: 0; line-height: 1.2;}
+
+  &>ul{
+    @extend %mainWidth; 
+    &>li{ padding:0; margin: 0 auto 2em;
+      a{display: block; position: relative;
+        border-bottom: 1px solid transparent; transition: .2s;
+        color: $fontInvert;
+        &:hover, &:focus{border-bottom-color: $fontInvert;}
+      }
+      &>ul{ font-size: .95rem;
+        &>li{margin: 1em 0;
+          &>a{ padding-left: 1em; position: relative;
+            &::before{content: ''; width: 5px; height: 1px; 
+              background: $fontInvert;
+              position: absolute; left: .2em; top: .6em;
+            }
+          }
+        }
+        ul{display: none;} // 第三層開始不顯示
+      }
+    }
+  }
+
+  &::after{
+    content: ''; position: absolute; right: 0; bottom: 0; width: 60%; height: 16px;
+    background-color: $primaryColor; @extend %grandient;
+  }
+
+  @media screen and (min-width: $wwMedium){
+    &>ul{
+      display: flex; flex-flow: row wrap; 
+      &>li{
+        flex: 0 0 44%; margin: 1em 3% .5em;
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+
+    &>ul{
+      &>li {
+        flex-basis: 30.33%; margin-left: 1.5%; margin-right: 1.5%;
+      }
+    }
+
+    &::after{ width: 40%;}
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    // padding-left: $wwMaximum*.04; padding-right: $wwMaximum*.04;
+  }
+}
+
+
+// 健保APP下載區
+.appDownload{
+  @extend %mainWidth;
+  // display: none;
+  padding: 3em 0;  background-color: #fff;
+
+  h2{
+    font-size: 2rem; line-height: 1.2; text-align: center; font-weight: normal;
+    margin: 0 0 20px;
+  }
+  .appLink{
+    list-style: none; margin: 0 0 15px;padding: 0; text-align: center;
+    li{
+      margin: 8px auto;
+      img{ height: 60px; width: 100%; object-fit: contain; }
+    }
+    &::after{
+      content: attr(title); display: block;
+      margin: 1em auto 0;
+    }
+  }
+  .qrCode{
+    img{ display: block; width: 240px; max-width: 100%; margin: 0 auto ;}
+    &::after{
+      content: attr(title); display: block; text-align: center; margin: 12px 0 0;
+    }
+  }
+
+  @media screen and (min-width: $wwMedium){
+    display: flex; flex-flow: row wrap; justify-content: center; align-items: center;
+    padding: 1.5em 0; margin: 0 auto;
+    h2{ flex: 0 0 100%;}
+    .appLink, .qrCode { flex: 1 1 50%;}
+  }
+
+  @media screen and (min-width: $wwNormal){
+    flex-wrap: nowrap; align-items: flex-start; padding: 3em 0;
+    h2{
+      flex: 0 1 8em;position: relative; 
+      margin: 0; padding: 0 24px 0 0;
+      &::after{content: ''; position: absolute; right: 0; top: 50%;margin-top: -9px;
+        width: 0; height: 0; border-style: solid; border-width: 9px 0 9px 12px;
+        border-color: transparent transparent transparent #000;
+      }
+    }
+  
+    .appLink{
+      flex: 1 0 460px; white-space: nowrap; padding-top: 8px;
+      li{
+        display: inline-block; margin: 0 5px;
+        a{ display: block; border-radius: 6px; overflow: hidden;}
+        img{display: block; height: 60px;}
+      }
+    }
+  
+    .qrCode{ flex: 1 1 auto; margin-top: -1.5em;
+      img{ width: 120px; height: 120px; object-fit: contain;}
+    }
+
+  }
+
+
+
+
+}

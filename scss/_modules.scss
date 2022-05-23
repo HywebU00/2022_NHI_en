@@ -1,0 +1,55 @@
+// 現在位置
+.breadcrumb {
+  padding: 2px 0;margin: 0 auto 3px; overflow: hidden;
+  ul, li{ list-style: none; margin: 0;padding: 0;}
+  ul{line-height: 1.2; overflow: hidden; }
+  li{float: left; position: relative;
+    &:nth-child(n+2){padding-left: 2em;
+      &::before{ content: '';position: absolute; left: 1em; top: .1em; 
+        width: 2px; height: 1em; background: #000;
+        transform: rotate(20deg);border-bottom: none; border-left: none;
+      }
+    }
+    &:first-child{padding-left: 0;}
+    a{display: block; text-decoration: none;
+      border-bottom: 2px solid transparent;
+        // &:hover, &:focus{ }
+    }
+  }
+  @media screen and (min-width: $wwNormal){
+    width: 100%;
+  }
+}
+
+
+.funcBar{ font-size: 1rem;
+  ul{ list-style: none; margin: 0;padding: 0;
+    display: flex; flex-flow: row wrap; justify-content: flex-end;}
+  li{margin:5px;padding: 0; text-indent: -20em;
+    a, button{display: block;width: 44px; height: 44px; overflow: hidden;
+      background-color: #444; background-repeat: no-repeat; background-position: center center;
+      color: $fontInvert; border: none; border-radius: 50%;
+      transition: .2s;
+      &:hover, &:focus{ transform: scale(1.15);}
+    }
+    img{ display: block; width: 100%; height: 100%; margin: 0 auto;border-radius: 50%; }
+    &.back{}
+    &.print>a{
+      background-image: url(../images/icon_print.png);
+      background-size: 24px;
+    }
+    &.forward>a{
+      background: url(../images/icon_print.png) no-repeat center center;
+      background-size: 32px;
+    }
+  }
+}
+
+
+
+// 列表上方的文字
+.preface{
+  padding:1em 2em; margin: 2em auto; line-height: 2;
+  background: #fff; border-radius: 16px;
+  box-shadow: rgba(0,0,0,.3) 0 0 20px;
+}

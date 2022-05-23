@@ -1,0 +1,152 @@
+.menu{
+  ul{
+    list-style: none; margin: 0; padding: 0; line-height: 1.4;
+    li{ margin: 0; padding: 0;}
+    a{ display: block; position: relative; text-decoration: none;}
+  }
+}
+
+// 行動版側欄
+.sidebar{
+  position: fixed; z-index: 990;
+  width: $sideBarWidth; margin-left:$sideBarWidth * (-1);
+  top: 62px; bottom: 0; overflow: auto;
+  background: $sidebarBg; color: $fontInvert;
+  transition: .5s;
+
+  &.reveal{ margin-left:0; }
+
+
+  // 行動版側欄主選單
+  .menu{ 
+    &>ul{
+      border-bottom: 3px solid $assistant1; font-size: 1.2rem;
+      li{
+        a{position: relative;color: $fontInvert; text-decoration: none;
+          &:hover{background-color: rgba(0,0,0,.6)}
+        }
+        &.hasChild{
+          &>a{
+            padding-right: 36px;
+            &::after{
+              content: ''; position: absolute; right: 15px; top: 1.2em;
+              width: 8px; height: 8px; border: 2px solid $assistant1;
+              transform: rotate(45deg); border-left: none; border-top: none;
+              transition: .2s;
+            }
+          }
+          &.closeIt>a{
+            &::after{ transform: rotate(225deg); top: 1.5em; }
+          }
+        }
+
+        ul{ 
+          display: none;
+          font-size: 1rem; border-top: 1px solid rgba(255,255,255,.2);
+          li{
+            a{
+              padding: .9em .8em .8em 36px;
+              &::before{
+                content: ''; position: absolute; left: 1.2rem; top: 1.5em;
+                width: 8px; height: 2px; background-color: $fontInvert;
+              }
+            }
+          }
+          // 第三層和其之後
+          ul{ margin-left: 32px; border-top: none;
+            a{ padding-left: 22px;
+              &::before {left: 7px; height: 1px;}
+            }
+          }
+        }
+      }
+      // 第一層選單項目
+      &>li{
+        border-bottom: 1px solid rgba(255,255,255,.4);
+        &:last-child{ border-bottom: none;}
+        &>a{
+          position: relative;
+          padding: .9em .8em .8em; transition: .2s;
+        }
+      }
+    }
+
+    .closeThis, .skip{ display: none;}
+  }
+
+
+
+  @media screen and (min-width: $wwNormal){
+    display: none;
+  }
+
+}
+// 寬版主選單
+.webHeader .menu{
+  display: none;
+  position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 990;
+  padding: 60px 5vw; overflow-y: auto;
+  background-color: rgba(0,0,0,.85); color: $fontInvert;
+  a{ color: $fontInvert;}
+  
+  &>ul{
+    display: flex; flex-flow: row wrap; margin: 0 auto;
+    &>li{
+      flex: 0 0 28%; margin: 0 2.5% 2em;
+      font-size: 1.5rem;
+      &>a{ 
+        border-bottom: 1px solid $assistant1;
+        &::after{
+          content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+          height: 0; background-color: $assistant1;
+          transition: height .15s;
+        }
+        &:hover, &:focus{ 
+          &::after{ height: 2px;}
+        }
+      }
+      &>ul{
+        margin: 1em 0 0;
+        &>li{
+          &>a{ 
+            padding: .5em 0 .1em 22px;
+            border-bottom: 1px solid transparent;
+            &::before{
+              content: ''; position: absolute; left: 3px; top: 1.2em;
+              width: 8px; height: 2px; background: $fontInvert;
+              transition: .15s;
+            }
+            &:hover, &:focus{ border-color: transparentize($fontInvert, .4);
+              &::before{ height: 8px; transform: translateY(-4px);}
+            }
+          }
+          &+li{margin-top: 4px;}
+        }
+      }
+
+    }
+
+    ul{ font-size: 1.1rem;}
+    ul ul{ display: none;}
+  }
+
+  .closeThis{
+    display: block;
+    position: absolute; right: 5px; top: 5px; border-radius: 0;
+    background-color: transparent; border: none; box-shadow: none;
+    &:hover{ background-color: $primaryColor; }
+    &:focus{ background-color: $assistant1; box-shadow: $assistant1 0 0 0 2px; }
+  }
+
+  .skip{
+    display: block;
+    position: absolute; right: 0; width: 1px; height: 1px; padding: 0; opacity: 0;
+  }
+
+
+  @media screen and (min-width: $wwMaximum){
+    
+    &>ul{width: $wwMaximum*.9;}
+
+  }
+}

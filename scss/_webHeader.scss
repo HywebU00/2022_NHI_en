@@ -1,0 +1,145 @@
+
+.webHeader{
+  position: relative; padding: 0;
+  background-color: #aec0cd;
+  &::after{
+    content: ''; 
+    position: absolute; left: 0; bottom: -18px; height: 18px; 
+    width: 40vw;
+    @extend %grandient;
+  }
+
+  h1{
+    position: absolute; z-index: 19; width: calc(100% - 100px);
+    margin: 0 50px; padding:8px 0; font-size: 1rem;
+    // box-shadow: #fff 0 0 0 1px inset;
+    a{
+      display: block;
+      &:focus img{ box-shadow: $assistant1 0 0 0 2px inset; }
+    }
+    img{ 
+      display: block; height: 51px;margin: 0 auto;
+      object-fit: contain; object-position: left;
+    }
+  }
+
+
+
+
+
+  // 行動版側欄開關和快速查詢區開關  
+  .searchCtrl, .sidebarCtrl{ position: absolute; top: 5px;
+    &:hover, &:focus{
+      background-color: rgba(255,255,255,.7); box-shadow: none;
+    }
+  }
+  .sidebarCtrl{left: 4px;}
+  .searchCtrl{ right: 4px; z-index: 9; }
+  .menuCtrl{ display: none;}
+
+
+
+
+  .headerImg{ display: none;}
+
+  @media screen and (min-width: $wwNormal){
+    // padding-left: 50vw - $normalWidth*.5;
+    
+    &.inner{height: 37.5vw;}
+    
+    h1{
+      position: absolute; z-index: 9;width: auto; left: 60px;
+      margin: 0; padding-top: 32px;
+      img{ height: 68px; margin: 0;}
+    }
+
+    .sidebarCtrl{ display: none;}
+    .menuCtrl{ display: block; }
+    .searchCtrl{ position: relative; right: auto; top: 0;}
+    .menuCtrl, .searchCtrl{
+      &:hover {background-color: transparent; box-shadow: rgba(255,255,255,.5) 0 0 0 1px;}
+      &:focus{background-color: transparent; box-shadow: #fff 0 0 0 1px;}
+    }
+
+    .headerImg{
+      display: block; width: 100%; height: 100%;
+      position: absolute; top: 0; left: 0; 
+      img{display: block; width: 100%; height: 100%; object-fit: cover;}
+    }
+
+
+  }
+  @media screen and (min-width: $wwMaximum){
+    h1{
+      left: calc( 50vw - #{$wwMaximum}/2 + 60px);
+    }
+    &.inner{
+      height: 450px;
+    }
+    // &::after{width: 480px;}
+  }
+}
+
+
+
+
+
+
+// ---------- 快速查詢區
+.search { 
+  display: none;
+  position: absolute; top: 63px; left: auto; right: 0; z-index: 99;
+  width: 100vw; max-width:500px; padding: 24px 5vw 10px;
+  transform: translateX(100%);
+  background:$grayDark; color: darken($fontInvert, 20%);
+  transition:transform .5s;
+  &.reveal{transform: translateX(0);}
+
+  a{ color: $fontInvert; }
+
+  input[type="text"],
+  input[type="button"], input[type="submit"] {
+    float: left;
+    padding: 0 .5em; margin: 0;
+    font-size: inherit; height: 2.6em; line-height: 2.6;
+    border: none; border-radius: 0;
+    box-shadow: $assistant1 0 0 0 2px;
+  }
+  input[type="text"]{
+    width: calc(100% - 5em - 2px); max-width: 24em; margin-right: 2px;
+    background-color: #fff;
+    &:focus{box-shadow: $assistant1 0 0 0 2px, #000 0 0 0 1px inset;}
+  }
+  input[type="button"], input[type="submit"] {
+    width: 5em;background-color: $assistant1;
+    &:hover{ background-color: $primaryColor; box-shadow: $assistant1 0 0 0 2px;}
+    &:focus{ background-color: $primaryColor; box-shadow: $assistant1 0 0 0 2px, rgba(255,255,255,.8) 0 0 0 1px inset;}
+
+  }
+
+  // 熱門關鍵字
+  .hotKeywords{
+    clear: both; padding-top: 14px;
+    .label{display: inline-block; margin-right: .4em;line-height: 1.1; vertical-align: top;}
+    ul{ list-style: none; margin: 0; padding: 0; display: inline-block; line-height: 1.1;}
+    li{ margin:0 1em .4em 0; float: left;
+      a{ display: block; text-decoration: none; cursor: pointer;
+        &:hover, &:focus{ text-decoration: underline;}
+      }
+    }
+  }
+
+
+  @media screen and (min-width: $wwNormal){
+    top: 92px; right: 0; width: 420px; padding: 30px 30px 12px;
+    background: transparentize($grayDark, .15);
+    transform:translateX(100%);
+    transition: transform .5s;
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    &.reveal{ transform:translateX(calc( #{$wwMaximum}*.5 - 50vw ));}
+  }
+
+}
+
