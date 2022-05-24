@@ -24,9 +24,9 @@
       }
       &:first-child::before{ left: 30px;} //第一年
       &:last-child{ //最後一年
-        &::before{ right: 15px;}
+        &::before{ right: 20px;}
         &::after{ 
-          content: ''; position: absolute; right: 12px; 
+          content: ''; position: absolute; right: 18px; 
           width: 5px; height: 5px; top:  calc(1.5rem + 35px);
           background-color: #fff; border-radius: 50%;
           box-shadow: $primaryColor 0 0 0 2px;
@@ -68,9 +68,9 @@
 
   @media screen and (min-width: $wwNormal){
     .container{margin-left: 9vw; width: 91vw;}
-    .eventList{
-      .event{ flex-basis: 20%; }
-    }
   }
+
+
+
 
 }

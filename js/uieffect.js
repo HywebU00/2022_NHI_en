@@ -102,6 +102,12 @@ $(function(){
         settings: {
           slidesToShow: 5,
         }
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 6,
+        }
       }
     ]
   });
