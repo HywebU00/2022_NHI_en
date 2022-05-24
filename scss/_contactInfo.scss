@@ -1,35 +1,43 @@
 // 首頁：Contact Us 地圖與聯絡資訊--------------------------------------
 .contactInfo{
-  position: relative; padding-top: 50px; overflow: hidden;
+  position: relative; padding-top: 80px; overflow: hidden;
   background-color: $grayLight;
- 
+  
   .blockHeader{ display: inline-block; padding: 10px 4vw; text-align: left;}
   .contactUsBy{float: right; margin-bottom: 10px; margin-right: 4vw;}
-  
-  .container{ clear: both; position: relative; width: 100vw;  padding: 90px 4vw 70px;}
-  .mapList{
-    position: absolute; left: 0; top: 0; width: 100vw; min-height: 120vw;
-    
-    .map{ 
-      position: absolute; left: 0; top: 0;
-      img{
-        display: block;  width: 100%; height: 120vw; object-fit: cover;
+
+
+  // --- 地圖與聯絡資訊 --- // 
+  .container{ clear: both; padding: 20px 0 0; }
+
+  .mapList{ position: relative;  margin-top: -100px;
+    .map{ position: absolute; left: 0; top: 0; width: 100vw; height: 460px; overflow: hidden;
+      img{ display: block;  width: 100vw; height: 600px; object-fit: cover; object-position: 60% 0; }
+      a{ position: relative;  display: block;
+        &::before{ 
+          content: ''; position: absolute; left: 0;right: 0;top: 0;bottom: 0;
+          transition: .2s;z-index: 9;
+        }
+        &:hover{
+          &::before{box-shadow: $assistant1 0 0 0 1px inset;}
+        }
+        &:focus{
+          &::before{box-shadow: $assistant1 0 0 0 2px inset;}
+        }
       }
     }
   }
 
   .cardBox{
-    position: relative; width: 80vw;max-width: 400px; padding-bottom: 15rem;
-    background: #fff; box-shadow: rgba(0,0,0,.25) 0 0 30px;
-    font-size: 1.125rem;
+    position: relative; width: calc(100vw - 54px); max-width: 500px;
+    margin: 0 auto; padding-bottom: 15rem; z-index: 9;
+    background: #fff; box-shadow: rgba(0,0,0,.25) 0 0 30px; font-size: 1.125rem;
 
     .cardList{ display: block; position: relative;}
 
-    .infoCard{
-       padding: 2.8rem 50px 3.2rem;
-
-      h3{ font-size: 2rem; margin: 0 auto 1.6rem;}
-      ul{list-style: none; margin: 0; padding: 0;line-height: 1.5;}
+    .infoCard{ padding: 2.8rem 50px 3.2rem;
+      h3{ font-size: 1.7rem; margin: 0 auto 1.6rem; }
+      ul{ list-style: none; margin: 0; padding: 0;line-height: 1.5; }
       li{
         &+li{ margin-top: 1em;}
         &::before{
@@ -40,9 +48,9 @@
       }
     }
 
-    .slick-arrow{ z-index: 9; transform: translateY(-20%);
-      &.slick-prev{ left: -16px;}
-      &.slick-next{ right: -16px;}
+    .slick-arrow{ z-index: 9; top: auto; bottom: -30px;
+      &.slick-prev{ left: -20px;}
+      &.slick-next{ right: -20px;}
     }
 
     .slick-dots{
@@ -50,11 +58,10 @@
     }
 
     .base{
-      position: absolute; left: 0; bottom: 0; width: 100%;
-      padding:4.5rem 40px .5rem; margin: 0; height: 14rem;
+      position: absolute; left: 0; bottom: 0; width: 100%; height: 14rem;
+      padding:4.5rem 40px .5rem; margin: 0;
       line-height: 1.3; font-weight: bold;
-      background-color: $assistant1; color: $fontColorDark;
-      @extend %grandientV;
+      background-color: $assistant1; color: $fontColorDark; @extend %grandientV;
       p { margin: 0;
         &:first-child{font-size: 1.125em; margin-bottom: 0.6em;}
         &[title]::before{
@@ -71,24 +78,36 @@
     }
   }
 
+  // @media screen and (min-width: $wwMedium){
+  //   .mapList{ margin-top: -120px;
+  //     .map{ height: 500px;
+  //       img{ height: 624px; object-position: 50% 0; }
+  //     }
+  //   }
+  // }
 
-  @media screen and (min-width: $wwNormal){
+
+  @media screen and (min-width: $wwNormal - 200){
     .blockHeader{
       display: block; margin: 0 calc(5vw + 180px) 0 9vw;
       padding-bottom:40px; text-align: center;
     }
-    .contactUsBy{ float: none; margin: 0; position: absolute; right: 5vw; top: 50px;}
+    .contactUsBy{ float: none; margin: 0; position: absolute; right: 5vw; top: 80px;}
 
-    .container{ padding-left: 9vw; padding-right: 9vw; }
+    // --- 地圖與聯絡資訊 --- // 
+    .container{position: relative; padding: 120px 9vw 50px; height: 780px; }
 
-    .mapList{
-      .map{ position: absolute; left: 0; top: 0;
-        img{ height: 62.5vw; }
+    .mapList{ position: absolute; left: 0; top: 0; width: 100vw; margin: 0;
+      .map{ height: 920px;
+        img{ height: 936px ; object-position: 50% 50%; }
       }
     }
 
-    .cardBox{
-      .slick-dots{ bottom: 0; }
+
+    .cardBox{ width: 80vw; max-width: 400px; margin: 0;
+     .infoCard{
+      h3{ font-size: 2rem;}
+     }
     }
   }
 
@@ -96,14 +115,12 @@
     .blockHeader{
       margin-right:  calc(50vw - #{$wwMaximum}*.45 + 180px);
     }
-    .contactUsBy{ right: calc(50vw - #{$wwMaximum}*.45);}
+    .contactUsBy{ right: calc(50vw - #{$wwMaximum}*.45); }
   }
-
 }
 
 //社群圖示
 .contactUsBy{
-  // position: absolute; right: 4vw; top: 45px;
   ul{ list-style: none; margin: 0; padding: 0; display: flex;}
   li{
     flex: 0 0 48px;width: 48px; height: 48px;

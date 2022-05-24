@@ -119,19 +119,8 @@ $(function(){
     variableWidth: true,
     slidesToShow: 1,
     slidesToScroll: 1,
-    responsive: [
-      // {
-      //   breakpoint: 1000,
-      //   settings: {
-      //     centerPadding: '50px',
-      //   }
-      // }
-    ]
   });
-
-
   // --------------------- slick 參數設定：結束
-
 
   // 計算照片張數
   var _countPhoto = $('.imgSlick').filter('.count');
@@ -195,9 +184,10 @@ $(function(){
 
       if (_subMenu.is(':hidden')) {
         _subMenu.stop(true, false).slideDown();
-        _this.parent().addClass('closeIt');
+        _this.parent().addClass('closeIt').siblings().removeClass('closeIt').find('ul:visible').slideUp().parent().removeClass('closeIt');
       } else {
-        _subMenu.stop(true, false).slideUp();
+        _subMenu.stop(true, false).slideUp().find('ul:visible').slideUp();
+        _subMenu.find('.closeIt').removeClass('closeIt');
         _this.parent().removeClass('closeIt');
       }
     }
