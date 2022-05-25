@@ -128,6 +128,55 @@ $(function(){
   });
   // --------------------- slick 參數設定：結束
 
+
+  // 複合功能圖示
+  var _compIcon = $('.compound');
+  _compIcon.each(function(){
+    let _this = $(this);
+    let _controler = _this.children('button');
+    let _options = _this.find('ul');
+    let _optionsItem = _options.find('li>button');
+    let _shareLink = _options.find('li>a');
+
+    let height = _controler.innerHeight();
+    const speed = 250;
+
+    _controler.click(function(){
+      if (_options.is(':hidden')) {
+        _options.stop(true, false).slideDown(speed);
+      } else {
+        _options.stop(true, false).slideUp(speed);
+      }
+    })
+    _optionsItem.add(_shareLink).click(function(){
+      _options.stop(true, false).slideUp(speed);
+    })
+
+    _this.siblings().click(function(){
+      _options.stop(true, false).slideUp(speed);
+    })
+
+  })
+
+  // font size
+  var _fontSize = $('.fontSize');
+  var _fontSizeBtn = _fontSize.children('button');
+  var _fsOption = _fontSize.find('.fontSizeOptions>li>button');
+
+  _fsOption.click(function(){
+    let A = $(this).text();
+    let fontClass = $(this).attr('class');
+    _fontSizeBtn.removeClass().text( A ).addClass(fontClass);
+  })
+
+
+
+
+
+
+
+
+
   // 計算照片張數
   var _countPhoto = $('.imgSlick').filter('.count');
   _countPhoto.each(function(){

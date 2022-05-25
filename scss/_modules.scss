@@ -1,6 +1,7 @@
 // 現在位置
 .breadcrumb {
-  padding: 2px 0;margin: 0 auto 3px; overflow: hidden;
+  @extend %mainWidth;
+  padding: 2px 0;margin: 40px auto 3px;
   ul, li{ list-style: none; margin: 0;padding: 0;}
   ul{line-height: 1.2; overflow: hidden; }
   li{float: left; position: relative;
@@ -16,33 +17,69 @@
         // &:hover, &:focus{ }
     }
   }
-  @media screen and (min-width: $wwNormal){
-    width: 100%;
+}
+
+// 內頁標題 //
+.pageHeader{
+  @extend %mainWidth; margin: 2em auto 1em;
+  color: $fontColorDark; font-size: 1.5rem; line-height: 1.5;
+  h2{
+    padding: 0; margin: 0;
+    // .subheading{ display: inline-block; font-size: .8em;}
   }
 }
 
+// 列印、分享、返回 等功能圖示 //
+.funcBar{
+  font-size: 1rem; z-index: 99; position: relative;
+  ul{ list-style: none; margin: 0;padding: 0; text-align: center;}
+  &>ul{display: flex; flex-flow: row wrap; justify-content: flex-end;
+    &>li{
+      position: relative; margin:5px;padding: 0; text-indent: -20em;
+      &>ul{ position: absolute; top: auto; left: 0; display: none;}
+      li{ margin: 8px 0; padding: 0;
+        a, button{background-color: lighten($grayDark, 15%);}
+      }
 
-.funcBar{ font-size: 1rem;
-  ul{ list-style: none; margin: 0;padding: 0;
-    display: flex; flex-flow: row wrap; justify-content: flex-end;}
-  li{margin:5px;padding: 0; text-indent: -20em;
-    a, button{display: block;width: 44px; height: 44px; overflow: hidden;
-      background-color: #444; background-repeat: no-repeat; background-position: center center;
-      color: $fontInvert; border: none; border-radius: 50%;
-      transition: .2s;
-      &:hover, &:focus{ transform: scale(1.15);}
-    }
-    img{ display: block; width: 100%; height: 100%; margin: 0 auto;border-radius: 50%; }
-    &.back{}
-    &.print>a{
-      background-image: url(../images/icon_print.png);
-      background-size: 24px;
-    }
-    &.forward>a{
-      background: url(../images/icon_print.png) no-repeat center center;
-      background-size: 32px;
+      a, button{
+        display: block;width: 44px; height: 44px; overflow: hidden;margin: 0; padding: 0;
+        background-color: $grayDark; background-repeat: no-repeat; background-position: center center;
+        color: $fontInvert; border: none; border-radius: 50%;
+        transition: .2s;
+        &:hover, &:focus{
+          box-shadow: $primaryColor 0 0 0 3px;
+          background-color: $primaryColor;
+        }
+      }
+      img{ display: block; width: 100%; height: 100%; margin: 0 auto;border-radius: 50%; }
+  
+      &.back>a{
+        background-image: url(../images/icon_back.png);
+        background-size: 36px;
+      }
+      &.print>a{
+        background-image: url(../images/icon_print.png);
+        background-size: 24px;
+      }
+      &.share{
+        &>button{
+          background-image: url(../images/icon_share.png);
+          background-size: 24px;
+        }
+        li{
+          &>a{ background-color: transparent;}
+        }
+      }
     }
   }
+}
+
+// 文字大小 //
+.fontSize{
+  button{ line-height: 44px; }
+  .small{ font-size: .85rem;}
+  .medium{ font-size: 1.125rem;}
+  .large{ font-size: 1.3rem;}
 }
 
 
