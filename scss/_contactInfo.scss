@@ -126,19 +126,21 @@
     flex: 0 0 48px;width: 48px; height: 48px;
     margin: 5px; padding: 0;
     a {
-      display: block; height: 100%; border-radius: 50%;
+      display: block; height: 100%; border-radius: 50%; overflow: hidden;
       background: #fff url(../images/icon_sns.png) no-repeat center top;
       background-size: 32px; transition: .2s;
+      &:hover, &:focus{ box-shadow:#fff 0 0 0 1px, rgba(0,0,0,.4) 0 0 0 4px;}
     }
-    &.facebook a{ background-color: #3B5998; background-position: center 0;
-      &:hover, &:focus{ box-shadow:#fff 0 0 0 1px inset, #3B5998 0 0 0 3px;}
-    }
-    &.youtube a{ background-color: #E80C02; background-position: center -50px;
-      &:hover, &:focus{ box-shadow: #fff 0 0 0 1px inset, #E80C02 0 0 0 3px;}
-    }
-    &.rss a{ background-color: #fe7200;background-position: center -100px;
-      &:hover, &:focus{ box-shadow: #fff 0 0 0 1px inset, #fe7200 0 0 0 3px;}
-    }
+    img{ display: block;}
+    // &.facebook a{ background-color: #3B5998; background-position: center 0;
+    //   &:hover, &:focus{ box-shadow:#fff 0 0 0 1px inset, #3B5998 0 0 0 3px;}
+    // }
+    // &.youtube a{ background-color: #E80C02; background-position: center -50px;
+    //   &:hover, &:focus{ box-shadow: #fff 0 0 0 1px inset, #E80C02 0 0 0 3px;}
+    // }
+    // &.rss a{ background-color: #fe7200;background-position: center -100px;
+    //   &:hover, &:focus{ box-shadow: #fff 0 0 0 1px inset, #fe7200 0 0 0 3px;}
+    // }
 
   }
 }
