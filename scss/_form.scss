@@ -147,8 +147,8 @@ input[type="checkbox"]{
   &:checked{
     background: $btnBg2 url(../images/icon_check.svg) no-repeat center .05em;
     background-size: 96%;
-    box-shadow: $btnBg2 0 0 0 2px; border-color: $fontInvert;
-    &:focus{box-shadow: $fontInvert 0 0 0 1px, $btnBg2 0 0 0 4px;}
+    box-shadow: $btnBg2 0 0 0 2px; border-color: transparent;
+    &:focus{box-shadow: $fontInvert 0 0 0 2px, $btnBg2 0 0 0 4px;}
   }
 }
 

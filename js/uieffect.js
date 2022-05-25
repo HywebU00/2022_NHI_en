@@ -170,6 +170,27 @@ $(function(){
   })
 
 
+  // 可收合區
+  _drawer = $('.drawer');
+  _drawer.each(function () {
+    let _this = $(this);
+    let _handle = _this.find('.handle');
+    let _tray = _this.find('.tray');
+    const speed = 400;
+
+    _handle.click(function () {
+      if (_tray.is(':hidden')) {
+        _tray.slideDown(speed);
+        _handle.removeClass('openIt');
+      } else {
+        _tray.slideUp(speed);
+        _handle.addClass('openIt');
+      }
+    })
+  })
+
+
+
 
 
 

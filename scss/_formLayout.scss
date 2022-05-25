@@ -1,13 +1,13 @@
 table.formLayout {
   border-collapse: collapse;line-height: 1.3;padding: 0;margin: 0 auto;
-  outline: 1px solid red;
-  width: 86%;
+  // outline: 1px solid red;
+  width: 99%;
   td { padding: 4px 0;
     &:nth-child(odd) {
       vertical-align: top; text-align: right;
-      padding:1.2em .8em 0 0; width: 6em;
+      padding:1.2em 1em 0 0; width: 9em;
     }
-    &:nth-child(even) { }
+    &:nth-child(even) { padding-right: 0; }
   }
 
 
@@ -26,10 +26,9 @@ table.formLayout {
 }
 
 // 送出、清除等按鈕
-.btnDv{text-align: center;
-  margin: 1.2em auto;
+.btnDv{
+  text-align: center; margin: 1em auto; padding: 0 0 1em;
   input{ min-width: 10em;}
-
 }
 
 // 日期區間
@@ -52,6 +51,51 @@ table.formLayout {
   }
 }
 
-// .formA fieldset .duration{
-//   width:calc(86vw - 4px);
-// }
+// 單選、複選
+.optionPool{ margin: 3px;
+  label{display: inline-block; margin:0 1em 3px 0; padding: .6em 1em .5em .6em; line-height: 1.5;
+    &:hover{
+      box-shadow: $borderColorLight 0 0 0 1px; border-radius: 2em;
+    }
+    input{ vertical-align: top; margin-top: .2em;}
+  }
+}
+
+// 表單樣式
+.formA{
+  .formLayout{width: 90%;}
+  h3{ 
+    width: 90%;margin: 0 auto; padding: 0 0 20px; overflow: hidden; 
+    font-size: 1.3rem; 
+    .handle{float: right; font-weight: bold;}
+  }
+}
+
+
+// 開合區
+.drawer{
+  button.handle{
+    position: relative; height: 2.4em; line-height: 2.4; min-width: 8em;
+    padding: 0 44px 0 28px;text-align: left;
+    background-color: $grayLight; color: $fontColor; border-color: $gray;
+    font-size: inherit;
+
+    &:hover, &:focus{ background-color: $grayLight;border-color: $assistant1; box-shadow: none;}
+    &:focus { box-shadow: $assistant1 0 0 0 1px;}
+
+    &::after{
+      content: ''; position: absolute; right: 20px; top: 50%; margin-top: -3px;
+      width: 10px; height: 10px;
+      border: 2px solid $fontColor; border-bottom: none; border-right: none;
+      transform: rotate(45deg); transition: .3s;
+    }
+
+    &.openIt{
+      &::after{
+        transform: rotate(225deg); margin-top: -8px;
+      }
+    }
+  }
+
+  .tray {clear: both;}
+}

@@ -21,7 +21,7 @@
 
 // 內頁標題 //
 .pageHeader{
-  @extend %mainWidth; margin: 2em auto 1em;
+  margin: 2em auto 1em;
   color: $fontColorDark; font-size: 1.5rem; line-height: 1.5;
   h2{
     padding: 0; margin: 0;
@@ -88,5 +88,94 @@
 .preface{
   padding:1em 2em; margin: 2em auto; line-height: 2;
   background: #fff; border-radius: 16px;
-  box-shadow: rgba(0,0,0,.3) 0 0 20px;
+  box-shadow: rgba(0,0,0,.15) 0 0 20px;
+}
+
+// 檔案類型
+.fileType{
+  display: inline-block; vertical-align: middle; margin: 0 1px;
+  a{ 
+    display: block; position: relative; width: 2.6em; height: 3em; line-height:4.2em;
+    font-size: .92em; text-decoration: none;text-align: center;
+    color: $fontInvert; background-color: #ddd; border-radius: 2px; transition: .2s;
+    &::before{
+      content: ''; position: absolute; top: 8px; left: 8px; right: 8px; height: 1px;
+      background-color: rgba(255,255,255,.7);
+      box-shadow: rgba(255,255,255,.7) 0 5px 0, rgba(255,255,255,.7) 0 10px 0;
+    }
+    &:hover, &:focus{border-radius: 2px;}
+  }
+
+  &.mp3, &.mp4, &.mov, &.wmv{
+    a{
+      &::before{
+        width: 0; height: 0; top: 10px; left: 16px; right: auto;
+        background-color: transparent;box-shadow: none;
+        border-style: solid;border-width: 5px 0 5px 8px;
+        border-color: transparent transparent transparent rgba(255,255,255,.8);
+      }
+    }
+  }
+  &.jpg{
+    a{
+      &::before{
+        width: 10px; height: 10px; top: 9px; right: auto; left: 8px;
+        background-color: rgba(255,255,255,.8);box-shadow: none;
+      }
+      &::after{
+        position: absolute; content: '';
+        width: 12px; height: 12px; top: 8px; right: 7px; left: auto;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,.8);box-shadow: none;
+      }
+    }
+  }
+
+  &.zip a{background:#333;
+    &:hover, &:focus{box-shadow: #333 0 0 0 2px;}
+  }
+  &.pdf a{background:#c00;
+    &:hover, &:focus{box-shadow: #c00 0 0 0 2px;}
+  }
+  &.doc , &.docx, &.odt{
+    a{background:#1b76cb;
+      &:hover, &:focus{box-shadow: #1b76cb 0 0 0 2px;}
+    }
+  }
+  &.xls, &.xlsx, &.csv, &.ods {
+    a{background:#48920f;
+      &:hover, &:focus{box-shadow: #48920f 0 0 0 2px;}
+    }
+  }
+  &.ppt, &.pptx, &.odp{
+    a{background:#c43e1c;
+      &:hover, &:focus{box-shadow: #c43e1c 0 0 0 2px;}
+    }
+  }
+  &.txt a{background:#1d98e4;
+    &:hover, &:focus{box-shadow: #1d98e4 0 0 0 2px;}
+  }
+  &.jpg a{background:#0b9fb2;
+    &:hover, &:focus{box-shadow: #0b9fb2 0 0 0 2px;}
+  }
+  &.mp3, &.mp4 {
+    a{ background:#9d3a89;
+      &:hover, &:focus{box-shadow: #9d3a89 0 0 0 2px;}
+    }
+  }
+  &.mov, &.wmv{
+    a{background:#5843a9;
+      &:hover, &:focus{box-shadow: #5843a9 0 0 0 2px;}
+    }
+  }
+  &.other a{background:#555;
+    &:hover, &:focus{box-shadow: #555 0 0 0 2px;}
+  }
+}
+
+.downloadFiles{
+  list-style: none; margin: 0; padding: 0; overflow: hidden;
+  li{
+    float: left; margin: 3px;
+  }
 }
