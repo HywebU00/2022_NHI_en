@@ -57,7 +57,7 @@
       &::before, &::after{
         content: ''; position: absolute; top: 0; z-index: 19;
         width: 50vw; height: 100%;
-        background-color: rgba(50,50,50,.65); 
+        background-color: rgba(255,255,255,.7); 
       }
       &::before{left: 0; transform: translateX(-100%);}
       &::after{right: 0;transform: translateX(100%);}
@@ -66,9 +66,7 @@
       img{ height: $wwMaximum*.5625;}
       .text{
         right: auto; left: 9vw;  width: $wwMaximum*.82;
-        // width: calc( #{$wwMaximum} - 240px );
       }
-      // &:not(.slick-active) {filter: blur(12px); }  
     }
     .slick-arrow{
       &.slick-prev{ left: calc( 50vw - #{$wwMaximum}/2 + 15px);}
