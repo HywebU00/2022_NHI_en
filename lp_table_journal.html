@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NHI 表格條列、附件列表</title>
+  <title>NHI 期刊列表</title>
 
   <link rel="stylesheet" href="css/style.css">
 
@@ -125,7 +125,7 @@
 
 
     <header class="pageHeader">
-      <h2>Prepaid Medical Expenses</h2>
+      <h2>Journal Articles Using NHI Research Data</h2>
       <section class="funcBar">
         <ul>
           <li class="fontSize compound"><button type="button">A</button>
@@ -148,154 +148,193 @@
       </section>
     </header>
 
-    <section class="preface">
-      <p>If you meet any of the following criteria, simply prepare the related documents and request reimbursement from any National Health Insurance Administration regional division or liaison office.</p>
-      <p>The National Health Insurance Administration will reimburse your medical expenses according to audit results:</p>
+    <section class="formA drawer">
+      <h3><button title="click to collapse/expand the search area" class="handle" type="button">Search</button></h3>
+      <div class="tray">
+        <form action="">
+          <table class="formLayout">
+            <tr>
+              <td>Title</td>
+              <td><input class="fullWidth" type="text" placeholder="please enter title"></td>
+            </tr>
+            <tr>
+              <td>Journal</td>
+              <td><input class="fullWidth" type="text" placeholder="please enter journal"></td>
+            </tr>
+            <tr>
+              <td>Author</td>
+              <td><input class="fullWidth" type="text" placeholder="please enter author"></td>
+            </tr>
+            <tr>
+              <td>PubDate</td>
+              <td>
+                <div class="duration">
+                  <input type="date">
+                  <input type="date">
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>Subject</td>
+              <td>
+                <select class="fullWidth">
+                  <option value="0">Please choose</option>
+                  <option value="">Biochemistry, Genetics and Molecular Biology</option>
+                  <option value="">Dentistry</option>
+                  <option value="">Health Professions</option>
+                  <option value="">Immunology and microbiology</option>
+                  <option value="">Medicine</option>
+                  <option value="">Nuroscience</option>
+                  <option value="">Nursing</option>
+                  <option value="">Toxicology and Pharmaceutics</option>
+                  <option value="">Pharmacology, Toxicology and Pharmaceutics</option>
+                  <option value="">Psychology</option>
+                  <option value="">Social Science</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Keyeords</td>
+              <td><input class="fullWidth" type="text" placeholder="please enter keywords"></td>
+            </tr>
+
+          </table>
+          <div class="btnDv">
+            <input type="button" value="Search">
+            <input type="reset" value="Clear">
+          </div>
+        </form>
+      </div>
     </section>
 
-    <section class="category">
+    <section class="downloadHere">
+      <h3>Download</h3>
       <ul>
-        <li><a href="#">All</a></li>
-        <li class="active"><a href="#">Cate1</a></li>
-        <li><a href="#">Category2</a></li>
-        <li><a href="#">Lorem ipsum</a></li>
-        <li><a href="#">Dolor sit amet</a></li>
-        <li><a href="#">Consectetur</a></li>
-        <li><a href="#">Libero id faucibus</a></li>
-        <li><a href="#">Tristique</a></li>
-        <li><a href="#">Nulla facilisi </a></li>
-        <li><a href="#">Tempus</a></li>
+        <li><a download href="filename.xlsx">
+          <span class="fileType xlsx">xlsx</span>
+          <span class="fileSize" title="file size">149.18KB</span>
+        </a></li>
+        <li><a download href="filename.xlsx">
+          <span class="fileType ods">ods</span>
+          <span class="fileSize" title="file size">127.61KB</span></a>
+        </li>
       </ul>
     </section>
 
-    <section class="list">
+    <section class="list border stickyHead wide">
       <table class="rwdTable">
         <thead>
           <tr>
-            <th>no.</th>
+            <th>no</th>
             <th>Title</th>
+            <th>Journal</th>
+            <th>Author</th>
+            <th>SCI<br>Impact<br>Factor</th>
             <th>PubDate</th>
-            <th>Download</th>
+            <th>Subject</th>
+            <th>Keywords</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td class="numb">1</td>
-            <td><a href="#">National Health Insurance Insurance Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.doc" title="download filename.doc"><span class="fileType doc">doc</span></a></li>
-                <li><a download href="filename.docx" title="download filename.docx"><span class="fileType docx">docx</span></a></li>
-                <li><a download href="filename.odt" title="download filename.odt"><span class="fileType odt">odt</span></a></li>
-                <li><a download href="filename.docx" title="download filename.docx"><span class="fileType txt">txt</span></a></li>
-                <li><a download href="filename.pdf" title="download filename.pdf"><span class="fileType pdf">pdf</span></a></li>
-                <li><a download href="filename.zip" title="download filename.zip"><span class="fileType zip">zip</span></a></li>
-              </ul>
-            </td>
+            <td class="aLeft"><a href="#">Bilateral oophorectomy and the risk of hepatocellular carcinoma in women with hepatitis C: A population-based study</a></td>
+            <td>Maturitas</td>
+            <td class="aLeft">Chen CY, Wang TY, Chen WM, Chen KH, Yang YH, Chen PC, Chen VC.</td>
+            <td>3.63</td>
+            <td><time>2022-03-25</time></td>
+            <td class="aLeft">Medicine、Biochemistry, Genetics and Molecular Biology</td>
+            <td class="aLeft">Hepatitis C virus; Hepatocellular carcinoma; National Health Insurance Research Database; Oophorectomy.</td>
           </tr>
           <tr>
             <td class="numb">2</td>
-            <td><a href="#">National Health Insurance Withdrawal Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.xls" title="download filename.xls"><span class="fileType xls">xls</span></a></li>
-                <li><a download href="filename.xlsx" title="download filename.xlsx"><span class="fileType xlsx">xlsx</span></a></li>
-                <li><a download href="filename.csv" title="download filename.csv"><span class="fileType csv">csv</span></a></li>
-                <li><a download href="filename.ods" title="download filename.ods"><span class="fileType ods">ods</span></a></li>
-              </ul>
-            </td>
+            <td class="aLeft"><a href="#">Association between chronic kidney disease and the most common corneal ectasia disease (keratoconus): a nationwide cohort study</a></td>
+            <td>BMC nephrology</td>
+            <td class="aLeft">Jan RL, Weng SF, Wang JJ, Chang YS.</td>
+            <td>1.913</td>
+            <td><time>2022-03-25</time></td>
+            <td class="aLeft">Medicine</td>
+            <td class="aLeft">Chronic kidney disease; Cohort study; Keratoconus; Taiwan Longitudinal Health Insurance Database.</td>
           </tr>
           <tr>
             <td class="numb">3</td>
-            <td><a href="#">National Health Insurance Suspension (Resumption) Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.ppt" title="download filename.ppt"><span class="fileType ppt">ppt</span></a></li>
-                <li><a download href="filename.pptx" title="download filename.pptx"><span class="fileType pptx">pptx</span></a></li>
-                <li><a download href="filename.odp" title="download filename.odp"><span class="fileType odp">odp</span></a></li>
-              </ul>
-            </td>
+            <td><a href="#">Use of gastric acid-suppressive agents increases the risk of dementia in patients with upper gastrointestinal disease: A population-based retrospective cohort study</a></td>
+            <td>PLoS One</td>
+            <td>Lin HC, Huang KT, Lin HL, Uang YS, Ho Y, Keller JJ, Wang LH.</td>
+            <td>2.74</td>
+            <td><time>2022-03-25</time></td>
+            <td>Medicine、Biochemistry, Genetics and Molecular Biology</td>
+            <td></td>
           </tr>
           <tr>
             <td class="numb">4</td>
-            <td><a href="#">National Health Insurance Amendment Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.mp3" title="download filename.mp3"><span class="fileType mp3">mp3</span></a></li>
-                <li><a download href="filename.mp4" title="download filename.mp4"><span class="fileType mp4">mp4</span></a></li>
-                <li><a download href="filename.mov" title="download filename.mov"><span class="fileType mov">mov</span></a></li>
-                <li><a download href="filename.wmv" title="download filename.wmv"><span class="fileType wmv">wmv</span></a></li>
-              </ul>
-            </td>
+            <td><a href="#">Adherence to the modified Barcelona Clinic Liver Cancer guidelines: Results from a high-volume liver surgery center in East Asias</a></td>
+            <td>PLoS One</td>
+            <td>Yen YH, Cheng YF, Wang JH, Lin CC, Chen CH, Wang CC.</td>
+            <td>2.74</td>
+            <td><time>2022-03-25</time></td>
+            <td>Medicine、Biochemistry, Genetics and Molecular Biology</td>
+            <td></td>
           </tr>
           <tr>
             <td class="numb">5</td>
-            <td><a href="#">National Health Insurance Dividend Income Supplementary Premium Bill</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.jpg" title="download filename.jpg"><span class="fileType jpg">jpg</span></a></li>
-                <li><a download href="filename.xxx" title="download filename.xxx"><span class="fileType other">other</span></a></li>
-              </ul>
-            </td>
+            <td class="aLeft"><a href="#">Cigarette smoking and risk of herpes zoster: A population-based cohort study in Taiwan</a></td>
+            <td>Clinical and experimental dermatology</td>
+            <td class="aLeft">Dai YX, Yeh FY, Shen YJ, Tai YH, Huang N, Chang YT, Chen TJ, Li CP, Wu CY.</td>
+            <td>1.977</td>
+            <td><time>2022-03-24</time></td>
+            <td class="aLeft">Medicine</td>
+            <td class="aLeft"></td>
           </tr>
           <tr>
             <td class="numb">6</td>
-            <td><a href="#">Added/Closed Donation Transfer Authorization Power of Attorney for National Health Insurance Administration, Ministry of Health and Welfare Charity Account</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download="" href="filename.pdf" title="download filename.pdf"><span class="fileType pdf">pdf</span></a></li>
-              </ul>
-            </td>
+            <td class="aLeft"><a href="#">Similar major cardiovascular outcomes between pure statin and ezetimibe-statin in comparable intensity for type 2 diabetes with extremely atherosclerotic risks</a></td>
+            <td>Scientific reports</td>
+            <td class="aLeft">Kao YC, Chen TH, Liu CH, Hwang JS, Hsiao CC, Lin YS, Mao CT, Hung MJ, Li YR.</td>
+            <td>3.998</td>
+            <td><time>2022-03-23</time></td>
+            <td class="aLeft">Medicine</td>
+            <td class="aLeft"></td>
           </tr>
           <tr>
             <td class="numb">7</td>
-            <td><a href="#">National Health Insurance Insurance Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download="" href="filename.pdf" title="download filename.pdf"><span class="fileType pdf">pdf</span></a></li>
-              </ul>
-            </td>
+            <td class="aLeft"><a href="#">Pregnancy outcomes in women with vitiligo: A Taiwanese nationwide cohort study</a></td>
+            <td>PLoS One</td>
+            <td class="aLeft">Hung CT, Huang HH, Wang CK, Chung CH, Tsao CH, Chien WC, Wang WM.</td>
+            <td>2.74</td>
+            <td><time>2022-03-22</time></td>
+            <td class="aLeft">Medicine、Biochemistry, Genetics and Molecula</td>
+            <td class="aLeft"></td>
           </tr>
           <tr>
-            <td class="numb">888</td>
-            <td><a href="#">National Health Insurance Withdrawal Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download="" href="filename.docx" title="download filename.docx"><span class="fileType docx">docx</span></a></li>
-                <li><a download="" href="filename.pdf" title="download filename.pdf"><span class="fileType pdf">pdf</span></a></li>
-              </ul>
-            </td>
+            <td class="numb">8</td>
+            <td><a href="#">Antidepressants and risk of sudden sensorineural hearing loss: a population-based cohort study</a></td>
+            <td>International journal of epidemiology</td>
+            <td>Zhong PX, Li IH, Shih JH, Yeh CB, Chiang KW, Kao LT.</td>
+            <td>7.707</td>
+            <td><time>2022-03-20</time></td>
+            <td>Medicine</td>
+            <td>Antidepressant; depression; hearing; safety; sudden sensorineural hearing loss.</td>
           </tr>
           <tr>
             <td class="numb">9</td>
-            <td><a href="#">National Health Insurance Suspension (Resumption) Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.xls" title="download filename.xls"><span class="fileType xls">xls</span></a></li>
-                <li><a download href="filename.xlsx" title="download filename.xlsx"><span class="fileType xlsx">xlsx</span></a></li>
-              </ul>
-            </td>
+            <td><a href="#">Effect of Permanent Pacemaker Implantation After Valve Surgery on Long-Term Outcomes</a></td>
+            <td>Circulation journal : official journal of the Japanese Circulation Society</td>
+            <td>Chi MC, Hung KC, Chang SH, Wu VC, Chou AH, Chan YH, Lin CP, Chang CH, Chu PH, Chen SW.</td>
+            <td>2.54</td>
+            <td><time>2022-03-19</time></td>
+            <td>Medicine</td>
+            <td>Long-term outcome; Permanent pacemaker implantation; Valve surgery.</td>
           </tr>
           <tr>
             <td class="numb">10</td>
-            <td><a href="#">National Health Insurance Amendment Application Form for Category 6 Insured</a></td>
-            <td><time>2022-04-04</time></td>
-            <td>
-              <ul class="downloadFiles">
-                <li><a download href="filename.xls" title="download filename.xls"><span class="fileType xls">xls</span></a></li>
-                <li><a download href="filename.xlsx" title="download filename.xlsx"><span class="fileType xlsx">xlsx</span></a></li>
-                <li><a download href="filename.zip" title="download filename.zip"><span class="fileType zip">zip</span></a></li>
-              </ul>
-            </td>
+            <td><a href="#">Bidirectional Association between Psoriasis and Atopic Dermatitis: A Nationwide Population-Based Cohort Study</a></td>
+            <td>Dermatology</td>
+            <td>Dai YX, Tai YH, Chang YT, Chen TJ, Chen MH.</td>
+            <td>3.695</td>
+            <td><time>2022-03-18</time></td>
+            <td>Medicine</td>
+            <td>Atopic dermatitis; Cohort study; Epidemiology; Psoriasis; Taiwan’s National Health Insurance Research Database.</td>
           </tr>
         </tbody>
       </table>

@@ -93,88 +93,144 @@
 
 // 檔案類型
 .fileType{
-  display: inline-block; vertical-align: middle; margin: 0 1px;
-  a{ 
-    display: block; position: relative; width: 2.6em; height: 3em; line-height:4.2em;
-    font-size: .92em; text-decoration: none;text-align: center;
-    color: $fontInvert; background-color: #aaa; transition: .2s;
-    &::before{
-      content: ''; position: absolute; top: 8px; left: 8px; right: 8px; height: 1px;
-      background-color: rgba(255,255,255,.7);
-      box-shadow: rgba(255,255,255,.7) 0 5px 0, rgba(255,255,255,.7) 0 10px 0;
-    }
+  display: block; position: relative; 
+  margin: 0; width: 2.4rem; height: 2.7rem; line-height:3.8rem;
+  font-size: .92rem; text-decoration: none; text-align: center;
+  color: $fontInvert; background-color: #aaa; transition: .2s;
+
+  &::before{
+    content: ''; position: absolute; top: 8px; left: 8px; right: 8px; height: 1px;
+    background-color: rgba(255,255,255,.7);
+    box-shadow: rgba(255,255,255,.7) 0 5px 0, rgba(255,255,255,.7) 0 10px 0;
   }
 
   &.mp3, &.mp4, &.mov, &.wmv{
-    a{
-      &::before{
-        width: 0; height: 0; top: 10px; left: 16px; right: auto;
-        background-color: transparent;box-shadow: none;
-        border-style: solid;border-width: 5px 0 5px 8px;
-        border-color: transparent transparent transparent rgba(255,255,255,.8);
-      }
+    &::before{
+      width: 0; height: 0; top: 10px; left: 16px; right: auto;
+      background-color: transparent;box-shadow: none;
+      border-style: solid;border-width: 5px 0 5px 8px;
+      border-color: transparent transparent transparent rgba(255,255,255,.8);
     }
   }
   &.jpg{
-    a{
-      &::before{
-        width: 10px; height: 10px; top: 9px; right: auto; left: 8px;
-        background-color: rgba(255,255,255,.8);box-shadow: none;
-      }
-      &::after{
-        position: absolute; content: '';
-        width: 12px; height: 12px; top: 8px; right: 7px; left: auto;
-        border-radius: 50%;
-        background-color: rgba(255,255,255,.8);box-shadow: none;
-      }
+    &::before{
+      width: 10px; height: 10px; top: 9px; right: auto; left: 8px;
+      background-color: rgba(255,255,255,.8);box-shadow: none;
+    }
+    &::after{
+      position: absolute; content: '';
+      width: 12px; height: 12px; top: 8px; right: 7px; left: auto;
+      border-radius: 50%;
+      background-color: rgba(255,255,255,.8);box-shadow: none;
     }
   }
 
-  &.zip a{background:#333;
-    &:hover, &:focus{box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #333 0 0 0 2px;}
-  }
-  &.pdf a{background:#c00;
+  &.pdf {background:#c00;
     &:hover, &:focus{box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #c00 0 0 0 2px;}
   }
   &.doc , &.docx, &.odt{
-    a{background:#1b76cb;
-      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1b76cb 0 0 0 2px;}
-    }
+    background:#1b76cb;
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1b76cb 0 0 0 2px;}
   }
   &.xls, &.xlsx, &.csv, &.ods {
-    a{background:#48920f;
-      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset,  #48920f 0 0 0 2px;}
-    }
+    background:#48920f;
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset,  #48920f 0 0 0 2px;}
   }
   &.ppt, &.pptx, &.odp{
-    a{background:#c43e1c;
-      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #c43e1c 0 0 0 2px;}
-    }
+    background:#c43e1c;
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #c43e1c 0 0 0 2px;}
   }
-  &.txt a{background:#1d98e4;
+  &.txt {
+    background:#1d98e4;
     &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1d98e4 0 0 0 2px;}
   }
-  &.jpg a{background:#0b9fb2;
+  &.jpg {
+    background:#0b9fb2;
     &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #0b9fb2 0 0 0 2px;}
   }
   &.mp3, &.mp4 {
-    a{ background:#9d3a89;
-      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #9d3a89 0 0 0 2px;}
-    }
+    background:#9d3a89;
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #9d3a89 0 0 0 2px;}
   }
   &.mov, &.wmv{
-    a{background:#5843a9;
-      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #5843a9 0 0 0 2px;}
-    }
+    background:#5843a9;
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #5843a9 0 0 0 2px;}
   }
-  &.other a{background:#555;
+  &.zip {
+    background:#333;
+    &:hover, &:focus{box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #333 0 0 0 2px;}
+  }
+  &.other {background:#555;
     &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #555 0 0 0 2px;}
   }
 }
+a .fileType{ color: $fontInvert;text-decoration: none; }
+a:hover, a:focus {
+  .fileType {
+    color: $fontInvert;text-decoration: none;
+    &.pdf {
+      box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #c00 0 0 0 2px; }
+    &.doc , &.docx, &.odt{
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1b76cb 0 0 0 2px; }
+    &.xls, &.xlsx, &.csv, &.ods {
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset,  #48920f 0 0 0 2px; }
+    &.ppt, &.pptx, &.odp{
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #c43e1c 0 0 0 2px; }
+    &.txt {
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1d98e4 0 0 0 2px; }
+    &.jpg {
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #0b9fb2 0 0 0 2px; }
+    &.mp3, &.mp4 {
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #9d3a89 0 0 0 2px; }
+    &.mov, &.wmv{
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #5843a9 0 0 0 2px; }
+    &.zip {
+      box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #333 0 0 0 2px; }
+    &.other {
+      box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #555 0 0 0 2px; }
+  }
+}
+
 
 .downloadFiles{
   list-style: none; margin: 0; padding: 0; overflow: hidden;
   li{
     float: left; margin: 3px;
+    a{ display: block;  margin: 0; padding: 0; text-decoration: none; }
   }
+}
+
+
+.downloadHere{
+  border: 1px solid $grayDark;
+  h3{ margin: 0; padding: 20px; line-height: 1; background-color: $grayDark; color: $fontInvert;}
+  ul{ list-style: none; margin: 0; padding: 20px; overflow: hidden;}
+  li{ margin: 0 20px 0 0; padding: 0; float: left;
+    a{
+      display: block; padding: 3px;
+      text-decoration: none; color: $fontColor;
+      span{ display: inline-block; vertical-align: middle;
+        &.fileSize{ padding: 0 8px 0 3px;}
+      }
+      &:hover{
+        box-shadow: $borderColor 0 0 0 1px;
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwMedium){
+    display: flex; align-content: center; 
+    h3 {
+      flex: 1 0 5em; margin-right: 10px; 
+      font-size: 1.2rem; line-height: 2.2em; text-align: center;}
+    ul{
+      flex: 1 1 70%; padding: 15px 20px;
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    margin-left: -5vw; margin-right: -5vw;
+  }
+  
+
 }

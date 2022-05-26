@@ -1,6 +1,6 @@
 // 項目 ul, li 條列 //
 .list{
-  margin: 20px auto 0;  background: #fff;
+  position: relative; margin: 20px auto 0;  background: #fff;
   &>ul{
     list-style: none; margin: 0; padding: 0;
     line-height: 1.5; font-size: 1.125rem;
@@ -38,34 +38,44 @@
 
 // 表格 table 條列 //
 .list{
-  position: relative;
-  &>table{ border-collapse: collapse; line-height: 1.5; width: calc(100% - 16px); margin:8px;
-
-    &::before{
-      content: ''; position: absolute; left: 0; right: 0; top: 0; bottom: 0;
-      box-shadow: $borderColor 0 0 0 2px inset;
+  &.wide { margin-left: -5vw; margin-right: -5vw;}
+  &.border{ border: 2px solid $borderColor;}
+  &.stickyHead {
+    thead{ 
+      position: sticky; top: 0; background: $grayLight; z-index: 9;
+      box-shadow: $borderColorDark 0 1px 0;
+      tr{ border-bottom: none;}
     }
-    
-    tr{ border-bottom: 1px solid $borderColor;}
+  }
+  
+  &>table{ border-collapse: collapse; line-height: 1.5; width: calc(100% - 8px); margin:4px;
+    thead{
+      tr{border-bottom-color: $borderColorDark;}
+    }
+    tbody tr:last-child{border-bottom: none;}
+
+    tr{ border-bottom: 1px solid $borderColor; }
     th, td{ padding: 14px 16px 12px; position: relative;
-      &::before{
+      &::after{
         content: ''; position: absolute;
          width: 1px; background: $borderColor; top: 4px; bottom: 4px; left: 0;
       }
       &:first-child{
-        &::before{display: none;}
+        &::after{background-color: transparent;}
       }
     }
-    th{ white-space: nowrap;
-      &::before{top: 6px; padding-top: 16px;}
-    }
 
-    td{ text-align: center;
-      &.numb{ text-align: right; }
+    td{
+      text-align: center;
+      &.aLeft{ text-align: left;}
+      &.aRight{ text-align: right;}
+
+      &.numb{ text-align: right; 
+        &::after{content: '.'; position: static;}
+      }
+      &[data-th="Title"], &[data-th="title"] { text-align: left; font-size: 1.2em; }
       &>a{
-        display: block;
-        font-size: 1.2em; text-align: left;  color: $linkColor; text-decoration: none;
-        transition: .2s;
+        color: $linkColor; text-decoration: none; transition: .2s;
         &:hover, &:focus{
          text-decoration: underline;color: $fontColorDark; 
         }
@@ -73,32 +83,67 @@
       time{ display: inline-block; white-space: nowrap; }
     }
 
-    thead tr{ border-bottom-color: $borderColorDark;}
-    tbody tr:last-child{border-bottom: none;}
 
   }
 
 
+  @media screen and (max-width: $wwNormal - 1){
+    &.wide{ 
+      margin-left: auto; margin-right: auto;
+      &>table{
+        thead{display: none;}
+        tr, th, td{ display: block;}
+        tr{ position: relative; overflow: hidden; padding: .8em 0 2em 3.4em;}
+        th, td{
+          position: static; margin: 0; text-align: left;
+          &::after{display: none;}
+        }
+
+        td{
+          padding:.3em 15px .3em 0;
+          &::before {
+            content: attr(data-th) ':'; display: inline-block; margin-right: .5em;
+            color: $fontColorLight;
+          }
+
+          &.numb{
+            position: absolute; top: .8em; left: 0;width: 2.4em; text-align: right;
+            font-size: 1.125em; font-weight: bold;
+            &::before{display: none;}
+            &::after{display: inline-block;}
+          }
+          &>a{display: inline;}
+        }
+      }
+    }
+  }
+
 
   @media screen and (max-width: $wwMedium - 1px){
-    &>table{
-      thead{display: none;}
-      tr, th, td{ display: block;}
-      tr{ position: relative; overflow: hidden; padding: .8em 0 .7em 3.4em;}
-      th, td{
-        position: static; padding: 0;margin: 0; text-align: left;
-        &::before{display: none;}
-      }
-      td{ 
-        &.numb{
-          position: absolute; top: .8em; left: 0;width: 2.4em;
-          font-size: 1.125em; font-weight: bold;
-          &::after{content: '.';}
+    &:not(.wide){
+      &>table{
+        thead{display: none;}
+        tr, th, td{ display: block;}
+        tr{ position: relative; overflow: hidden; padding: .8em 0 2em 3.4em;}
+        th, td{
+          position: static; padding: 0;margin: 0; text-align: left;
+          &::after{display: none;}
         }
-        &>a{display: block; }
+        td{
+          padding:.3em 15px .3em 0;
+          &::before {
+            content: attr(data-th) ':'; display: inline-block; margin-right: .5em;
+            color: $fontColorLight;
+          }
 
-        time{position: absolute; right: 0; bottom: .7em;}
-        .downloadFiles{ margin:.5em 5.5em 0 -3px;}
+          &.numb{
+            position: absolute; top: .8em; left: 0;width: 2.4em; text-align: right;
+            font-size: 1.125em; font-weight: bold;
+            &::before{ display: none;}
+            &::after{display: inline-block;}
+          }
+          .downloadFiles{ display: inline-block; vertical-align: top;}
+        }
       }
     }
   }
