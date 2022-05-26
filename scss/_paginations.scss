@@ -1,12 +1,14 @@
 .pagination { 
-  @extend %mainWidth; margin-top: 3em;
-  padding: 10px 0;
+  margin: 3em 0 0; padding: 10px 0;
   text-align: center;font-size: 1rem; line-height: 1.5;
   form{ display: inline-block;}
   input, select{font-size: inherit; height: 2.4em; line-height: 2.4;}
   select{ background-position:right 8px top .95em;}
   a{text-decoration: none;}
-  em{ display: inline-block; font-style: normal; margin: 0 .3em; color: $primaryColor;}
+  em{
+    display: inline-block; margin: 0 .4em; 
+    font-style: normal; font-weight: bold; color: $fontColorDark;
+  }
 
   .items{ display: inline;
     a{ display: inline-block; font-weight: bold;  color: $fontColor;
@@ -14,7 +16,7 @@
       border-radius: 3px;
       transition: .2s;
       &:hover, &:focus{box-shadow: $primaryColor 0 0 0 2px;}
-      &.active{ background-image: linear-gradient( #444 , #000 80%); color: $fontInvert; }
+      &.active{ background-image: linear-gradient( #000 , #363636 80%); color: $fontInvert; }
     }
   }
 
@@ -29,9 +31,7 @@
         &:hover, &:focus{ box-shadow: $primaryColor 0 0 0 2px;}
       }
       &.active{
-        a{ background-image: linear-gradient( #444 , #000 80%); color: $fontInvert;
-          &:hover, &:focus{background: #000;}
-        }
+        a{ background-image: linear-gradient( #000 , #363636 80%); color: $fontInvert;}
       }
 
       &.first, &.prev, &.next, &.last{  text-indent: -20em;

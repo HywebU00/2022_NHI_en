@@ -1,6 +1,6 @@
-// 項目 ul, li 條列
+// 項目 ul, li 條列 //
 .list{
-  margin: 2em auto;  background: #fff;
+  margin: 20px auto 0;  background: #fff;
   &>ul{
     list-style: none; margin: 0; padding: 0;
     line-height: 1.5; font-size: 1.125rem;
@@ -12,7 +12,9 @@
         padding: .9em 0;
         text-decoration: none; color: $fontColor; transition: .2s;
 
-        &:hover, &:focus{ background-color: $primaryColor; color: $fontInvert;}
+        &:hover, &:focus{ background-color: $grayLight; color: $fontColorDark;
+          .title{ text-decoration: underline;}
+        }
 
         // &>*{border: 1px solid pink;}
       }
@@ -34,7 +36,7 @@
   }
 }
 
-// 表格條列
+// 表格 table 條列 //
 .list{
   position: relative;
   &>table{ border-collapse: collapse; line-height: 1.5; width: calc(100% - 16px); margin:8px;
@@ -62,11 +64,10 @@
       &.numb{ text-align: right; }
       &>a{
         display: block;
-        padding: 12px 15px 9px; margin: -10px -12px -8px -11px;
-        font-size: 1.2em; text-align: left;  color: $fontColor; text-decoration: none;
+        font-size: 1.2em; text-align: left;  color: $linkColor; text-decoration: none;
         transition: .2s;
         &:hover, &:focus{
-          background: $primaryColor; color: $fontInvert;
+         text-decoration: underline;color: $fontColorDark; 
         }
       }
       time{ display: inline-block; white-space: nowrap; }
@@ -77,27 +78,27 @@
 
   }
 
-  @media screen and (max-width: $wwNormal - 1){
-    &>table{ margin: 0; width: 100%;}
-  }
+
 
   @media screen and (max-width: $wwMedium - 1px){
     &>table{
-      tr:first-child{display: none;}
+      thead{display: none;}
       tr, th, td{ display: block;}
-      tr{
-        position: relative; overflow: hidden; padding: .8em 0 .7em 3.2em;
-        // outline: 1px solid red;
-      }
-      th, td{position: static; padding: 0;margin: 0; text-align: left;
+      tr{ position: relative; overflow: hidden; padding: .8em 0 .7em 3.4em;}
+      th, td{
+        position: static; padding: 0;margin: 0; text-align: left;
         &::before{display: none;}
       }
-      td{ display: inline-block;  vertical-align: top;
-        &.numb{ position: absolute;top: .2em; left: 0; top: .9em;width: 2.7em; }
-        &>a{display: block; margin:-.5rem 0 0 -.5rem; padding:.5rem 0 .5rem .5rem; 
-          // width:calc(#{$mmw} - 3rem);
+      td{ 
+        &.numb{
+          position: absolute; top: .8em; left: 0;width: 2.4em;
+          font-size: 1.125em; font-weight: bold;
+          &::after{content: '.';}
         }
-        time{margin-left: .8em;}
+        &>a{display: block; }
+
+        time{position: absolute; right: 0; bottom: .7em;}
+        .downloadFiles{ margin:.5em 5.5em 0 -3px;}
       }
     }
   }

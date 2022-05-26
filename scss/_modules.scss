@@ -1,20 +1,20 @@
 // 現在位置
 .breadcrumb {
-  @extend %mainWidth;
-  padding: 2px 0;margin: 40px auto 3px;
+  margin: 5px auto;
   ul, li{ list-style: none; margin: 0;padding: 0;}
   ul{line-height: 1.2; overflow: hidden; }
-  li{float: left; position: relative;
+  li{float: left; position: relative;color: $fontColor;
     &:nth-child(n+2){padding-left: 2em;
       &::before{ content: '';position: absolute; left: 1em; top: .1em; 
-        width: 2px; height: 1em; background: #000;
+        width: 1px; height: 1em; background: $fontColorLight;
         transform: rotate(20deg);border-bottom: none; border-left: none;
       }
     }
     &:first-child{padding-left: 0;}
-    a{display: block; text-decoration: none;
-      border-bottom: 2px solid transparent;
-        // &:hover, &:focus{ }
+    a{
+      display: block; text-decoration: none; color: $fontColorLight;
+      border-bottom: 1px solid transparent;
+        &:hover, &:focus{  border-bottom-color: $fontColor; color: $fontColor;}
     }
   }
 }
@@ -97,13 +97,12 @@
   a{ 
     display: block; position: relative; width: 2.6em; height: 3em; line-height:4.2em;
     font-size: .92em; text-decoration: none;text-align: center;
-    color: $fontInvert; background-color: #ddd; border-radius: 2px; transition: .2s;
+    color: $fontInvert; background-color: #aaa; transition: .2s;
     &::before{
       content: ''; position: absolute; top: 8px; left: 8px; right: 8px; height: 1px;
       background-color: rgba(255,255,255,.7);
       box-shadow: rgba(255,255,255,.7) 0 5px 0, rgba(255,255,255,.7) 0 10px 0;
     }
-    &:hover, &:focus{border-radius: 2px;}
   }
 
   &.mp3, &.mp4, &.mov, &.wmv{
@@ -132,44 +131,44 @@
   }
 
   &.zip a{background:#333;
-    &:hover, &:focus{box-shadow: #333 0 0 0 2px;}
+    &:hover, &:focus{box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #333 0 0 0 2px;}
   }
   &.pdf a{background:#c00;
-    &:hover, &:focus{box-shadow: #c00 0 0 0 2px;}
+    &:hover, &:focus{box-shadow:rgba(255,255,255,.6) 0 0 0 1px inset, #c00 0 0 0 2px;}
   }
   &.doc , &.docx, &.odt{
     a{background:#1b76cb;
-      &:hover, &:focus{box-shadow: #1b76cb 0 0 0 2px;}
+      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1b76cb 0 0 0 2px;}
     }
   }
   &.xls, &.xlsx, &.csv, &.ods {
     a{background:#48920f;
-      &:hover, &:focus{box-shadow: #48920f 0 0 0 2px;}
+      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset,  #48920f 0 0 0 2px;}
     }
   }
   &.ppt, &.pptx, &.odp{
     a{background:#c43e1c;
-      &:hover, &:focus{box-shadow: #c43e1c 0 0 0 2px;}
+      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #c43e1c 0 0 0 2px;}
     }
   }
   &.txt a{background:#1d98e4;
-    &:hover, &:focus{box-shadow: #1d98e4 0 0 0 2px;}
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #1d98e4 0 0 0 2px;}
   }
   &.jpg a{background:#0b9fb2;
-    &:hover, &:focus{box-shadow: #0b9fb2 0 0 0 2px;}
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #0b9fb2 0 0 0 2px;}
   }
   &.mp3, &.mp4 {
     a{ background:#9d3a89;
-      &:hover, &:focus{box-shadow: #9d3a89 0 0 0 2px;}
+      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #9d3a89 0 0 0 2px;}
     }
   }
   &.mov, &.wmv{
     a{background:#5843a9;
-      &:hover, &:focus{box-shadow: #5843a9 0 0 0 2px;}
+      &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #5843a9 0 0 0 2px;}
     }
   }
   &.other a{background:#555;
-    &:hover, &:focus{box-shadow: #555 0 0 0 2px;}
+    &:hover, &:focus{box-shadow: rgba(255,255,255,.6) 0 0 0 1px inset, #555 0 0 0 2px;}
   }
 }
 
