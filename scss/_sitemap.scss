@@ -1,0 +1,85 @@
+.sitemap{ 
+  margin: 2em auto; line-height: 1.8;
+  .accesskeyDefine{
+    padding: 1.5em 1em 1.2em 2.5em; margin: 1.5em 0;
+    background-color: $grayLight;
+  }
+  li+li{margin-top: .5em;}
+  
+  .cascading{ margin: 4em auto;
+    ul{ line-height: 1.5;
+      list-style: none; margin: 0; padding: 0;
+      ul ul{margin-left: 1.2em;}
+      a{
+        display: block; margin: 0; text-decoration: none;
+        // &:hover, &:focus{
+        //   border-bottom-color: $assistant1; color: $linkColor;
+         
+        // }
+      }
+    }
+    &>ul{
+      // 第一層
+      &>li{
+       margin: 0 0 2em; font-size: 1.2rem; font-weight: bold;
+        &>a{
+          padding: .6em 2px 0;
+          border-bottom: 3px solid $assistant1;color: $fontColor;
+          &:hover, &:focus{ box-shadow: $primaryColor 0 1px 0; border-color: $primaryColor;}
+        }
+        ul{ font-weight: normal;font-size: 1rem;}
+        li{ margin:0 0 4px; text-indent: 0;
+          a{ position: relative; padding: .8em 3px 0 2em; }
+          .order { display: inline-block;}
+        }
+
+        // 第二層
+        &>ul>li{
+          a{ border-bottom: 1px solid $borderColor; color: $fontColor;
+            &:hover, &:focus{ border-bottom-color: $assistant1; box-shadow: $assistant1 0 1px 0;}
+          }
+          &>a{ padding-left: 2em;
+            .order { width: 2em; margin-left: -2em;}
+          }
+          // 第三層
+          &>ul>li{
+            &>a{ padding-left: 2.8em;
+              .order { width: 2.8em; margin-left: -2.8em; }
+            }
+            // 第四層
+            &>ul>li{
+              &>a{ padding-left: 3.5em;
+                .order { width: 3.5em; margin-left: -3.5em; }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwMedium){
+    .cascading{
+      &>ul{
+        display: flex; flex-flow: row wrap;
+
+        &>li{
+          flex: 0 0 48%; margin-right: 4%;
+          &:nth-child(2n){margin-right: 0;}
+          &>ul{margin-top: .3em;}
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    width: auto;
+    .cascading{
+      &>ul>li{
+        flex-basis: 30%;
+        &:nth-child(n){margin-right: 5%;}
+        &:nth-child(3n){margin-right: 0;}
+      }
+    }
+  }
+}
