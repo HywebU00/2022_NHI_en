@@ -10,7 +10,7 @@
 .sidebar{
   position: fixed; z-index: 990;
   width: $sideBarWidth; margin-left:$sideBarWidth * (-1);
-  top: 62px; bottom: 0; overflow: auto;
+  top: 67px; bottom: 0; overflow: auto;
   background: $sidebarBg; color: $fontInvert;
   transition: .5s;
 

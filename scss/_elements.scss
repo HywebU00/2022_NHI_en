@@ -62,7 +62,7 @@ a:focus{outline: none;}
 
 // 查詢圖示 ----------------------------------------------
 .searchCtrl{ 
-  position: relative;  width: 42px; height: 42px;
+  position: relative;  width: 52px; height: 52px;
   border-radius: 0; background-color: transparent; border: none;
   text-indent: -20em; overflow: hidden;
   &::before, &::after{
@@ -73,12 +73,19 @@ a:focus{outline: none;}
     width: 16px; height: 16px; border: 2px solid #000; border-radius: 50%;
   }
   &::after{
-    width: 12px; height: 3px; background: #000; border-radius: 0 2px 2px 0;
+    width: 12px; height: 3px; background-color: #000; border-radius: 0 2px 2px 0;
     left: calc(50% + 2px); top: calc(50% + 6px);
     transform: rotate(45deg);
   }
 
+  &:hover, &:focus{ background-color: $assistant1; box-shadow: none;
+    &::before{ border-color: #fff;}
+    &::after{ background-color: #fff;}
+  }
+  &:focus{box-shadow: $assistant1 0 0 0 2px;}
+
   @media screen and (min-width: $wwNormal){
+    width: 42px; height: 42px;
     &::before{ border-color: #fff;}
     &::after{background: #fff;}
   }
@@ -106,17 +113,25 @@ a:focus{outline: none;}
 
 // ----------------------------------------------
 .sidebarCtrl{
+  width: 52px; height: 52px; 
   left: 4px;z-index: 990;
   border-radius: 0; background-color: transparent;border: none;
-  &::before, &::after{background-color: #000;}
-  &::before{box-shadow: #000 0 18px 0;}
+  &::before, &::after{background-color: #000; right: 12px;}
+  &::before{box-shadow: #000 0 18px 0; top: 16px;}
+  &::after{top: 25px;}
+
+  &:hover, &:focus{ background-color: $assistant1;box-shadow: none;
+    &::before, &::after{background-color: #fff;}
+    &::before{box-shadow: #fff 0 18px 0;}
+  }
 
   &.closeIt{
     background-color: $assistant1;
-    &::before, &::after{ width: 28px; right: 7px;}
-    &::before{box-shadow: none;top: 20px; transform: rotate(45deg);}
-    &::after{ top: 20px; transform: rotate(-45deg);}
+    &::before, &::after{ width: 28px; right: 12px;background-color: #fff;}
+    &::before{box-shadow: none;top: 26px; transform: rotate(45deg);}
+    &::after{ top: 26px; transform: rotate(-45deg);}
   }
+
 }
 
 

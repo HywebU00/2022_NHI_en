@@ -1,18 +1,16 @@
 
 .webHeader{
   position: relative; padding: 0;
-  background-color: #aec0cd;
+  background-color: #bed7ea;
   &::after{
     content: ''; 
-    position: absolute; left: 0; bottom: -18px; height: 18px; 
-    width: 40vw;
+    position: absolute; left: 0; bottom: -8px; height: 8px; width: 72vw;
     @extend %grandient;
   }
 
   h1{
     position: absolute; z-index: 19; width: calc(100% - 100px);
     margin: 0 50px; padding:8px 0; font-size: 1rem;
-    // box-shadow: #fff 0 0 0 1px inset;
     a{
       display: block;
       &:focus img{ box-shadow: $assistant1 0 0 0 2px inset; }
@@ -25,14 +23,8 @@
 
 
 
-
-
   // 行動版側欄開關和快速查詢區開關  
-  .searchCtrl, .sidebarCtrl{ position: absolute; top: 5px;
-    &:hover, &:focus{
-      background-color: rgba(255,255,255,.7); box-shadow: none;
-    }
-  }
+  .searchCtrl, .sidebarCtrl{ position: absolute; top: 4px; }
   .sidebarCtrl{left: 4px;}
   .searchCtrl{ right: 4px; z-index: 9; }
   .menuCtrl{ display: none;}
@@ -46,6 +38,7 @@
   }
 
   @media screen and (min-width: $wwNormal){
+    &::after{ bottom: -18px; height: 18px; width: 40vw;}
     h1{
       position: absolute; z-index: 9;width: auto; left: 60px;
       margin: 0; padding-top: 32px;
@@ -82,7 +75,7 @@
 // ---------- 快速查詢區
 .search { 
   display: none;
-  position: absolute; top: 63px; left: auto; right: 0; z-index: 99;
+  position: absolute; top: 67px; left: auto; right: 0; z-index: 99;
   width: 100vw; max-width:500px; padding: 24px 5vw 10px;
   transform: translateX(100%);
   background:$grayDark; color: darken($fontInvert, 20%);
