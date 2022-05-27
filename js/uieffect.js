@@ -130,44 +130,67 @@ $(function(){
 
 
   // 複合功能圖示
-  var _compIcon = $('.compound');
+  var _compIcon = $('.compound'); //li
   _compIcon.each(function(){
     let _this = $(this);
     let _controler = _this.children('button');
-    let _options = _this.find('ul');
-    let _optionsItem = _options.find('li>button');
-    let _shareLink = _options.find('li>a');
+    let _optList = _this.children('ul');
+    let _optItem = _optList.children('li');
+    let _optButton = _optItem.children('button');
+    let _optLink = _optItem.children('a');
+    let count = _optItem.length;
 
-    let height = _controler.innerHeight();
-    const speed = 250;
+    const speed = 300;
+
+    // 改變 li 的 z-index 值，第一個 li 要在最上面
+    for (let i = 0; i < count; i++) {
+      _optItem.eq(i).css('z-index', count - i)
+    }
+
+    // 收合
+    function glideUp() {
+      for (let i = 0; i < count; i++) {
+        _optList.animate({ 'top': 0 }, speed);
+        _optItem.eq(i).delay( speed * i * .4).animate({ 'top': 0 }, speed, function(){
+          if ( i == count-1) {_optList.height(0).hide()}
+        });
+      }
+    }
 
     _controler.click(function(){
-      if (_options.is(':hidden')) {
-        _options.stop(true, false).slideDown(speed);
+      if (_optList.is(':hidden')) {
+        _optList.show();
+        let height = _optItem.outerHeight(true);
+        _optList.animate({ 'top': height }, speed);
+        for (let i = 0; i < count; i++) {
+          _optItem.eq(i).delay( speed*i*.3 ).animate({ 'top': height * i }, speed, function(){
+            _optList.height( height * count);
+          })
+        }
       } else {
-        _options.stop(true, false).slideUp(speed);
+        glideUp();
       }
     })
-    _optionsItem.add(_shareLink).click(function(){
-      _options.stop(true, false).slideUp(speed);
-    })
 
-    _this.siblings().click(function(){
-      _options.stop(true, false).slideUp(speed);
-    })
+    _optButton.add(_optLink).click(glideUp);
+    _this.siblings().click(glideUp);
+    _this.siblings().children('a, button').focus(glideUp);
 
   })
 
-  // font size
+
+  // font size：顯示所選項目
   var _fontSize = $('.fontSize');
   var _fontSizeBtn = _fontSize.children('button');
-  var _fsOption = _fontSize.find('.fontSizeOptions>li>button');
+  var _fsOption = _fontSize.find('ul>li>button');
 
   _fsOption.click(function(){
     let A = $(this).text();
     let fontClass = $(this).attr('class');
     _fontSizeBtn.removeClass().text( A ).addClass(fontClass);
   })
+
+
 
 
   // 可收合區

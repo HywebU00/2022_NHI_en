@@ -54,11 +54,11 @@ $iconH :42px;
         &:not([class]){
           &>a{
             &::after{
-              content: ''; position: absolute; left: 0; bottom: 11px; 
+              content: ''; position: absolute; left: 50%; bottom: 11px; 
               height: 2px; width: 0;
               background: #fff; transition: .2s;
             }
-            &:hover::after, &:focus::after{ width: 100%;}
+            &:hover::after, &:focus::after{ left: 0; width: 100%;}
           }
         }
       }

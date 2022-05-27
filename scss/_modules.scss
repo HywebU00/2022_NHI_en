@@ -1,4 +1,4 @@
-// 現在位置
+// 現在位置（麵包屑） //
 .breadcrumb {
   margin: 5px auto;
   ul, li{ list-style: none; margin: 0;padding: 0;}
@@ -25,7 +25,6 @@
   color: $fontColorDark; font-size: 1.5rem; line-height: 1.5;
   h2{
     padding: 0; margin: 0;
-    // .subheading{ display: inline-block; font-size: .8em;}
   }
 }
 
@@ -36,11 +35,6 @@
   &>ul{display: flex; flex-flow: row wrap; justify-content: flex-end;
     &>li{
       position: relative; margin:5px;padding: 0; text-indent: -20em;
-      &>ul{ position: absolute; top: auto; left: 0; display: none;}
-      li{ margin: 8px 0; padding: 0;
-        a, button{background-color: lighten($grayDark, 15%);}
-      }
-
       a, button{
         display: block;width: 44px; height: 44px; overflow: hidden;margin: 0; padding: 0;
         background-color: $grayDark; background-repeat: no-repeat; background-position: center center;
@@ -51,8 +45,6 @@
           background-color: $primaryColor;
         }
       }
-      img{ display: block; width: 100%; height: 100%; margin: 0 auto;border-radius: 50%; }
-  
       &.back>a{
         background-image: url(../images/icon_back.png);
         background-size: 36px;
@@ -61,6 +53,26 @@
         background-image: url(../images/icon_print.png);
         background-size: 24px;
       }
+
+
+      // 第二層
+      &>ul{ 
+        position: absolute; top: 0; left: 0; display: none;
+        width: 44px; margin-top: -2px;
+        &>li{
+          position: absolute; top: 0; left: 0; margin: 4px 0; padding: 0;
+          a, button{background-color: $primaryColor;
+            &:hover, &:focus{
+              box-shadow:#fff 0 0 0 1px, $primaryColor 0 0 0 3px;
+              background-color: $primaryColor;
+            }
+          }
+          img{ display: block; width: 100%; height: 100%; margin: 0 auto;border-radius: 50%; }
+        }
+      }
+
+      &.compound>button{position: relative; z-index: 19;}
+  
       &.share{
         &>button{
           background-image: url(../images/icon_share.png);
@@ -76,7 +88,7 @@
 
 // 文字大小 //
 .fontSize{
-  button{ line-height: 44px; }
+  button{ line-height: 44px;}
   .small{ font-size: .85rem;}
   .medium{ font-size: 1.125rem;}
   .large{ font-size: 1.3rem;}
@@ -84,14 +96,14 @@
 
 
 
-// 列表上方的文字
+// 列表上方的文字 //
 .preface{
   padding:1em 2em; margin: 2em auto; line-height: 2;
   background: #fff; border-radius: 16px;
   box-shadow: rgba(0,0,0,.15) 0 0 20px;
 }
 
-// 檔案類型
+// 檔案類型圖示 //
 .fileType{
   display: block; position: relative; 
   margin: 0; width: 2.4rem; height: 2.7rem; line-height:3.8rem;
@@ -232,5 +244,4 @@ a:hover, a:focus {
     margin-left: -5vw; margin-right: -5vw;
   }
   
-
 }

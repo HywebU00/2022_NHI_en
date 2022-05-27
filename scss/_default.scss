@@ -8,15 +8,9 @@ body{
 }
 
 .main{
-  // border: 1px solid red;
-  margin: 0 auto;
-  
-
+  position: relative; margin: 0 auto; 
   &.inner{
     padding: 60px 0 120px;
     @extend %mainWidth;
   }
-
-
-
 }

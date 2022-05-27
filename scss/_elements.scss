@@ -1,14 +1,22 @@
 a:focus{outline: none;}
 
+
+
 // ---------- 快捷鍵 ----------------------------------------------
 .accesskey{ display: none; }
 @media screen and (min-width: $wwNormal){
-  .accesskey{ display: block; z-index: 9;
+  a.accesskey{ display: block; z-index: 9;
     position: absolute; left: 0; top: 0; margin: 2px;
-    text-decoration: none; 
+    text-decoration: none;
+    &:focus, &:hover { outline: 2px solid $assistant1;}
   }
   .webHeader .accesskey{color: $primaryColor;}
-  .webFooter .accesskey{ top: 40px;}
+  .webFooter .accesskey{ top: 4px; color: $primaryColor;}
+  .main .accesskey { top: 20px; left: -1.5em; color: $gray;}
+}
+@media screen and (min-width: $wwMaximum){
+  .webHeader .accesskey,
+  .webFooter .accesskey { left: calc(50vw - #{$wwMaximum}*.5);}
 }
 
 
@@ -35,16 +43,18 @@ a:focus{outline: none;}
 .goCenter{
   display: none;
   @media screen and (min-width: $wwNormal){
-    display: block; overflow: hidden; z-index: 99; opacity: .5 ;
-    position: absolute; top: -2em;
-    font-size: .9rem; border-radius: 0 0 4px 4px;
-    height: 1.6em; line-height: 1.6; padding: 0 .5em; margin-left: 1em;
+    display: block; position: absolute; top: -2em; left: 0; z-index: 99;
+    padding: 0 1em; margin-left: 2em; border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    font-size: .9rem; height: 1.6em; line-height: 1.6;
+    background-color: $primaryColor; color: $fontInvert;
     text-decoration: none; outline: none;  cursor: pointer;
     transition:top .3s; 
     &:focus{ top: 0;}
     &:hover, &:focus{  opacity: 1; }
   }
   @media screen and (min-width: $wwMaximum){
+    left: calc(50vw  - #{$wwMaximum}*.5);
     
   }
 }
