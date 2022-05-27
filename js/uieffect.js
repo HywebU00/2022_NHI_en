@@ -150,8 +150,8 @@ $(function(){
     // 收合
     function glideUp() {
       for (let i = 0; i < count; i++) {
-        _optList.animate({ 'top': 0 }, speed);
-        _optItem.eq(i).delay( speed * i * .4).animate({ 'top': 0 }, speed, function(){
+        _optList.stop(true, false).animate({ 'top': 0 }, speed);
+        _optItem.eq(i).delay( speed * i * .4).stop(true, false).animate({ 'top': 0 }, speed, function(){
           if ( i == count-1) {_optList.height(0).hide()}
         });
       }
@@ -161,9 +161,9 @@ $(function(){
       if (_optList.is(':hidden')) {
         _optList.show();
         let height = _optItem.outerHeight(true);
-        _optList.animate({ 'top': height }, speed);
+        _optList.stop(true, false).animate({ 'top': height }, speed);
         for (let i = 0; i < count; i++) {
-          _optItem.eq(i).delay( speed*i*.3 ).animate({ 'top': height * i }, speed, function(){
+          _optItem.eq(i).delay( speed*i*.3 ).stop(true, false).animate({ 'top': height * i }, speed, function(){
             _optList.height( height * count);
           })
         }
@@ -175,7 +175,6 @@ $(function(){
     _optButton.add(_optLink).click(glideUp);
     _this.siblings().click(glideUp);
     _this.siblings().children('a, button').focus(glideUp);
-
   })
 
 
