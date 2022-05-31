@@ -62,7 +62,7 @@
   }
   @media screen and (min-width: $wwMaximum){
     h1{ left: calc( 50vw - #{$wwMaximum}/2 + 60px); }
-    .headerImg{ width: $wwMaximum; margin: 0 auto; }
+    // .headerImg{ width: $wwMaximum; margin: 0 auto; }
 
   }
 }
