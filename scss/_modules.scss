@@ -208,7 +208,8 @@ a:hover, a:focus {
   list-style: none; margin: 0; padding: 0; overflow: hidden;
   li{
     float: left; margin: 3px;
-    a{ display: block;  margin: 0; padding: 0; text-decoration: none; }
+    a{ display: block;  margin: 0; padding: 0; text-decoration: none;}
+    .fileSize{font-size: .9rem; color: $fontColor; display: inline-block; margin-left: 3px;}
   }
 }
 
@@ -244,4 +245,23 @@ a:hover, a:focus {
     margin-left: -5vw; margin-right: -5vw;
   }
   
+}
+
+
+// cp 頁的瀏覽人次與發布日期容器
+.pubInfo{ 
+  padding: 12px; margin: 4em auto 0;
+  // border-bottom: 3px solid $borderColorDark;
+  background-color: $grayLight;
+
+  display: flex; justify-content: space-between ;
+  
+  time[title], .visitCount[title], .from[title]{
+    display: inline-block; margin: 5px; text-decoration: none;
+    &::before{
+      content: attr(title) "：" ; display: inline-block;
+      color: $fontColorLight;  font-size: .92rem;
+    }
+    &+time, &+.visitCount,  &+.from{ margin-left: 1em;}
+  }
 }
