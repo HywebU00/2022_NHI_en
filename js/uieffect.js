@@ -594,13 +594,13 @@ $(function(){
     })
   })
 
-  // _showLightbox.focus(function(){
-  //   $(this).keyup(function (e) { 
-  //     if( e.keyCode == 13 ){
-  //       $(this).trigger('click');
-  //     }
-  //   });
-  // })
+  _showLightbox.focus(function(){
+    $(this).keyup(function (e) { 
+      if( e.keyCode == 13 ){
+        $(this).trigger('click');
+      }
+    });
+  })
 
   _hideLightbox.click(function(){
     let _targetLbx = $(this).parents('.lightbox');
