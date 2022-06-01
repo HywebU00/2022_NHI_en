@@ -231,6 +231,154 @@ $(function(){
 
 
 
+  // ----- .photoflow：cp頁的照片 
+  var _photoflow = $('.photoflow');
+  var _cpBigPhoto = $('.lightbox.bigPhoto');
+  
+  _photoflow.each(function () {
+    let _this = $(this);
+    let _floxBox = _this.find('.flowBox');
+    let _flowList = _floxBox.find('.flowList');
+    let _flowItem = _flowList.children('li');
+    let slideDistance = _flowItem.first().outerWidth(true);
+    let slideCount = _flowItem.length;
+    let _btnRight = _this.find('.diskBtn.next');
+    let _btnLeft = _this.find('.diskBtn.prev');
+    const speed = 400;
+    const actClassName = 'active';
+    let i = 0;
+    let j;
+    let _dots = '';
+
+    
+
+    // 產生 indicator 和 自訂屬性 data-index
+    _floxBox.append('<div class="flowNav"><ul></ul></div>');
+    let _indicator = _this.find(".flowNav>ul");
+    for (let n = 0; n < slideCount; n++) {
+      _dots = _dots + '<li></li>';
+      _flowItem.eq(n).attr('data-index', n);
+      _cpBigPhoto.find('.flowList>li').eq(n).attr('data-index', n);
+    }
+    _indicator.append(_dots);
+    let _indicatItem = _indicator.find('li');
+    _indicatItem.eq(i).addClass(actClassName);
+    _indicatItem.eq((i + 1) % slideCount).addClass(actClassName);
+
+    // 依據可視的 slide 項目，決定 indicator 樣式
+    indicatReady();
+    function indicatReady() {
+      _indicatItem.removeClass(actClassName);
+      _indicatItem.eq(i).addClass(actClassName);
+      // _indicatItem.eq((i + 1) % slideCount).addClass(actClassName);
+      if (ww < wwMedium) {
+        if (slideCount > 1) {
+          flownavShow();
+        } else {
+          flownavHide();
+        }
+      }
+      if (ww >= wwMedium) {
+        if (slideCount <= 2) {
+          flownavHide();
+        } else {
+          flownavShow();
+          _indicatItem.eq((i + 1) % slideCount).addClass(actClassName);
+          // _indicatItem.eq((i + 2) % slideCount).addClass(actClassName);
+        }
+      }
+      if (ww >= wwNormal) {
+        if (slideCount <= 4) {
+          flownavHide();
+        } else {
+          flownavShow();
+          _indicatItem.eq((i + 1) % slideCount).addClass(actClassName);
+          _indicatItem.eq((i + 2) % slideCount).addClass(actClassName);
+          // _indicatItem.eq((i + 3) % slideCount).addClass(actClassName);
+        }
+      }
+    }
+    function flownavShow(){
+      _indicator.add(_btnRight).add(_btnLeft).show();
+    }
+    function flownavHide(){
+      _indicator.add(_btnRight).add(_btnLeft).hide();
+    }
+
+    function slideForward(){
+      _flowList.stop(true, false).animate({'margin-left': -1 * slideDistance }, speed, function(){
+        j = (i + 1) % slideCount;
+        _flowItem.eq(i).appendTo(_flowList);
+        _indicatItem.eq(i).removeClass(actClassName);
+        _indicatItem.eq(j).addClass(actClassName);
+        // _indicatItem.eq((j + 1) % slideCount).addClass(actClassName);
+        _flowList.css('margin-left', 0);
+        if (ww >= wwMedium) {
+          _indicatItem.eq((j + 1) % slideCount).addClass(actClassName);
+        }
+        if (ww >= wwNormal) {
+          _indicatItem.eq((j + 2) % slideCount).addClass(actClassName);
+        }
+        i = j;
+      });
+    }
+    function slideBackward() {
+      j = (i - 1) % slideCount;
+      _flowItem.eq(j).prependTo(_flowList);
+      _flowList.css("margin-left", -1 * slideDistance);
+
+      _flowList.stop(true, false).animate({ "margin-left": 0 }, speed, function () {
+          _indicatItem.eq(j).addClass(actClassName);
+          if (ww >= wwNormal) {
+            _indicatItem.eq((i + 2) % slideCount).removeClass(actClassName);
+          } else if (ww >= wwMedium) {
+            _indicatItem.eq((i + 1) % slideCount).removeClass(actClassName);
+          } else {
+            // _indicatItem.eq((i + 1) % slideCount).removeClass(actClassName);
+            _indicatItem.eq(i).removeClass(actClassName);
+          }
+          i = j;
+        });
+    }
+
+    // 點擊向右箭頭
+    _btnRight.click(function () { slideForward(); });
+
+    // 點擊向左箭頭
+    _btnLeft.click(function () { slideBackward(); });
+
+    // touch and swipe 左右滑動
+    _floxBox.swipe({
+      swipeRight: function () {slideBackward();},
+      swipeLeft: function () {slideForward();},
+      threshold: 20,
+    });
+
+    // tab focus
+    let tabCount = 0;
+    _flowItem.children('a').focus(function (e) { 
+      e.preventDefault();
+      if ( tabCount > 0 && tabCount <= slideCount) {
+        slideForward();
+      }
+      tabCount++
+      if(tabCount > slideCount) {
+        _btnLeft.focus();
+        tabCount = 0;
+      }
+    });
+
+    let winResizeTimer;
+    _window.resize(function () {
+      clearTimeout(winResizeTimer);
+      winResizeTimer = setTimeout(function () {
+        ww = _window.width();
+        slideDistance = _flowItem.first().outerWidth(true);
+        indicatReady();
+      }, 200);
+    });
+
+  });
 
 
 
@@ -423,34 +571,43 @@ $(function(){
   var _lightbox = $('.lightbox');
   var _hideLightbox = _lightbox.find('.closeThis');
   var _lightboxNow;
+  var xxxNow;
   const speed = 400;
 
   _lightbox.before('<div class="coverAll"></div>');
+  _lightbox.append('<button type="button" class="skip"></button>');
   var _cover = $('.coverAll');
-  
+  var _skipToClose = _lightbox.find('.skip');
+
   _showLightbox.click(function(){
     let boxID = $(this).attr('data-id');
+    xxxNow = $(this);
 
     _lightboxNow = _lightbox.filter( function(){ return $(this).attr('data-id') === boxID} );
     _lightboxNow.stop(true, false).fadeIn(speed).addClass('show');
     _lightboxNow.find('.closeThis').focus();
     _lightboxNow.prev(_cover).fadeIn(speed);
     _body.addClass('noScroll');
+
+    _skipToClose.focus(function(){
+      _lightboxNow.find('.closeThis').focus();
+    })
   })
 
-  _showLightbox.focus(function(){
-    $(this).keyup(function (e) { 
-      if( e.keyCode == 13 ){
-        $(this).trigger('click');
-      }
-    });
-  })
+  // _showLightbox.focus(function(){
+  //   $(this).keyup(function (e) { 
+  //     if( e.keyCode == 13 ){
+  //       $(this).trigger('click');
+  //     }
+  //   });
+  // })
 
   _hideLightbox.click(function(){
     let _targetLbx = $(this).parents('.lightbox');
     _targetLbx.stop(true, false).fadeOut(speed,
       function(){
         _targetLbx.removeClass('show');
+        xxxNow.focus();
       }
     );
     _targetLbx.prev(_cover).fadeOut(speed);
@@ -467,6 +624,10 @@ $(function(){
       }
     );
   })
+
+
+
+  // ----- end of 燈箱
 
 
 

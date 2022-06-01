@@ -1,0 +1,83 @@
+// 燈箱（.lightbox）
+// 燈箱模組：需要燈箱效果的區塊可在原 class name 之後加 lightbox 即可有燈箱效果
+// 原來的 class name 只用來控制樣式
+.lightbox{ 
+  display: none;
+  position:fixed;top:3vw;left:3vw;
+  width:94vw; height: calc(100vh - 6vw); z-index:999;
+  padding:0; margin:0 auto; overflow: auto;overflow-y: auto;
+  background:#000; box-shadow:rgba(0,0,0,.6) 0 0 28px; 
+
+  .closeThis{
+    position: absolute; right:2px; top: 2px; z-index:99;
+    margin: 0; padding: 0; border-radius: 0;
+    background-color: rgba(0,0,0,.6);
+    &:hover, &:focus{ background-color: $assistant1; }
+    &:focus{box-shadow: $assistant1 0 0 0 2px;}
+  }
+
+  .head {
+    padding: 30px 0 .2em; margin-bottom: 15px; overflow: hidden;
+    border-bottom: 3px solid $borderColorLight;
+    h3 {
+      margin: 0; padding: 0; color: $fontColor;
+      .subhead {
+        display: inline-block; margin-left: 1em; font-size: .8em;
+        .pre { color: $fontColor; font-size: .8em; }
+      }
+    }
+  }
+
+  .skip{
+    position: absolute; right: 0; bottom: 0;
+    width: 1px; height: 1px;
+    background-color: transparent; border: none; box-shadow: none;
+  }
+ 
+  @media screen and (min-width:$wwNormal){
+    top: $wwNormal*.03; height: calc(100vh - #{$wwNormal}*.06);
+    // .closeThis{ top: $wwNormal*.03; }
+  }
+  
+  @media screen and (min-width: $wwMaximum){
+    width: $wwMaximum*.94; left:calc(50vw - #{$wwMaximum}*.47);
+    // .closeThis{right:calc(50vw - #{$wwMaximum}*.47) }
+  }
+
+}
+
+
+
+
+// ---------- 燈箱中的大圖瀏覽
+.lightbox{
+  .bigImgShow{ position: relative; height: 100%;
+    img{ display: block; width: 100%; height: 100%; object-fit: contain;}
+    .caption{
+      position: absolute; bottom: 0;left: 0; right: 0;
+      padding:50px 15px 18px; margin: 0;
+      color: $fontInvert; text-align: center;
+      background-image: linear-gradient(rgba(0,0,0,0) 10%, rgba(0,0,0,.5) 50%, rgba(0,0,0,1) 90%);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      transition: .6s;
+      time{ display:inline-block; margin-right: .8em; color: $fontInvert;}
+      .photoViewCount{ display: block; margin-top: .5em; font-size: .9em;
+        &::before{content: ''; display: inline-block; 
+          width: 22px; height: 16px;vertical-align: middle;  margin-right: 3px;
+          background: url(../images/icon_eye2.png) no-repeat 0 0; background-size: 22px; }
+      }
+      &:hover{
+        .caption{ transform: translateY(100%);}
+      }
+    }
+  }
+}
+
+
+
+// ---------- 燈箱遮罩
+.coverAll{ 
+  display: none; z-index: 995;
+  position: fixed; left: 0;right: 0;top: 0;bottom: 0;
+  background: rgba(0,0,0,.6);
+}

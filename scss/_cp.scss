@@ -6,11 +6,14 @@
   }
   figure{
     margin: 0 auto 1em; padding: 5px; width: 100%;
-    text-align: center;background: #fff;
-    img{ display: block; width: 100%; max-height: 70vh; object-fit: contain; transition: .2s; }
+    img{
+      display: block; width: 100%; max-height: 70vh; object-fit: contain;
+      box-shadow: rgba(0,0,0,.25) 0 2px 6px;
+      transition: .2s;
+    }
     figcaption{
-      display:inline-block; margin: .5em auto 0; padding: 0; 
-      text-align: left; line-height: 1.6; font-size: .9em;
+      margin: .6em auto 0; padding: 0;
+      line-height: 1.6; font-size: 1rem;
     }
     a{
       display: block; text-decoration: none; 
@@ -57,8 +60,10 @@
     border: 2px solid $borderColor; background-color: $mainBg;
     line-height: 1.5;
     th, td{ padding: .5em; border: 1px solid $borderColorLight;}
-    th{ background-color: darken($mainBg, 8%); 
+    th{
+      background-color: $primaryColor; color: $fontInvert; 
       &:first-child{ border-right-color: $borderColor;}
+      &:only-of-type:first-child{ background: lighten($primaryColor, 40%); color: $fontColorDark;}
     }
     tr:first-child th{border-bottom-color: $borderColor;}
   }
@@ -91,23 +96,22 @@
 }
 
 
-
+// ---------- 附件下載, 相關連結, 相關圖檔 ---------- //
 .fileDownload, .seeAlso, .photoflow{
-   margin-top: 60px;
+  margin-top: 60px;
   h3{font-size: 1.4em; margin: 0 0 .5em;}
   ul, ol{margin: 0; padding: 0; list-style: none; line-height: 1.6;}
   a{text-decoration: none; }
 }
+
+// ---------- 附件下載
 .fileDownload{
   &>ul{
-    border-top: 2px solid $borderColor;
-    border-bottom: 1px solid $borderColor;
+    border-top: 3px solid $borderColor;
+    border-bottom: 2px solid $borderColor;
     &>li{
       position: relative;margin: 5px 0 0; padding: 0 3px 5px;
       border-bottom: 1px solid $borderColor;
-      // &::before{content: ''; width: 8px; height: 8px; background: $fontColorLight;
-      //   position: absolute; left: 6px; top: 1em;
-      // }
       overflow: hidden;
     }
   }
@@ -120,17 +124,20 @@
   .downloadFiles{
     float: right;vertical-align: middle;
     li{margin-left: 16px;}
+    a:hover, a:focus {
+      .fileSize{text-decoration: underline;}
+    }
 
   }
   .fileType{ display: inline-block; vertical-align: middle;}
 }
 
 
-
+// ---------- 相關連結
 .seeAlso{
   &>ol{
-    border-top: 2px solid $borderColor;
-    border-bottom: 2px solid $borderColor;
+    border-top: 3px solid $borderColor;
+    border-bottom: 3px solid $borderColor;
   }
   li{
     margin: 5px 0 0;
@@ -138,7 +145,6 @@
       position: relative; display: block; padding: .7em 2px 1em;
       color: $fontColor; box-shadow: $borderColor 0 2px 0 -1px;
       transition: .2s;
-      // background: #eef;
       &::before{content: ''; width: 0; height: 0; border-style: solid; 
         border-width: 6px 0 6px 0; border-color: transparent;
         position: absolute; left: -2px; top: 1.1em; transition: .2s;
@@ -146,8 +152,6 @@
 
       &:hover, &:focus{
         padding-left: 22px;
-        // box-shadow: $primaryColor 0 3px 0 -1px;
-        // &::before{border-left-color: $primaryColor; transform: scale(1.25)}
         &::before{
           left: 5px; border-left-color: $fontColor; 
           border-left-width: 8px;
@@ -156,4 +160,166 @@
     }
   }
   
+}
+
+// ---------- 相關圖檔
+//（點擊左右箭頭滑動）photoflow
+.photoflow{ 
+  $dotDia : 8px; // 點點直徑
+  h3{
+    margin: 0 0 .8em; padding: 0 0 .5em;
+    border-bottom: 3px solid $borderColor;
+  }
+  .flowBox{
+    position: relative; width:100%; overflow: hidden;
+  }
+
+  .flowList{
+    list-style: none; margin: 0 0 10px; padding: 0;
+    display: flex; flex-flow: row nowrap;
+    &>li{
+      flex: 0 0 $mobileWidth;
+      margin: 0 10px 0 0; padding: 0;
+      &>a{
+        position: relative; display: block; width: 100%; overflow: hidden;
+        transition: .5s; 
+        &::before{
+          content: ''; 
+          position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+          box-shadow: $primaryColor 0 0 0 2px inset; opacity: 0; z-index: 9;
+        }
+        &:hover, &:focus {
+          p{ transform:  translateY(0); }
+          img{ transform: scale(1.1);}
+        }
+        &:focus {
+          p{ transition: none;}
+        }
+        &:focus::before{opacity: 1;}
+      }
+      img{
+        display: block; object-fit: cover;
+        width: 100%; height: $mobileWidth;
+        transition: .3s;
+      }
+      p{
+        position: absolute; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,.7); color: #fff;  padding:5px 10px; margin: 0;
+        transform: translateY(110%); transition: .5s;
+      }
+    }
+  }
+
+  // 點點
+  .flowNav{ 
+    margin: 30px 0 5px;
+    ul{
+      list-style: none; margin: 0; padding: 0;
+      display: flex; justify-content: center;
+    }
+    li{
+      flex: 0 1 $dotDia;
+      margin: 0 8px; padding: 0;
+      &::before{ content: ''; display: block;
+        width: $dotDia; height: $dotDia; border-radius: 50%; cursor: default;
+        background: $fontColorLight; border: none; margin: 0; padding: 0;
+        transition: .2s;
+      }
+      &.active{
+        &::before{ box-shadow: $primaryColor 0 0 0 3px;background:$primaryColor}
+      }
+    }
+  }
+
+  // 左右箭頭 button
+  .diskBtn{ top: $mobileWidth/2; }
+
+  @media screen and (min-width: $wwMedium){
+    .flowList{
+      &>li{
+        margin-right: 20px;
+        flex-basis: calc(#{$mobileWidth}/2 - 10px);
+        img{height: calc(#{$mobileWidth}/2 - 10px);}
+      }
+    }
+
+    .flowNav{
+      margin: 40px 70px;
+      li{margin: 0 12px;}
+    }
+    .diskBtn{
+      top: auto; bottom: 44px; transform: translateY(50%);
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    .flowList{
+      &>li{
+        margin: 0 18px 0 0;
+        flex-basis: calc(#{$normalWidth}/3 - 12px);
+        img{ height: calc(#{$normalWidth}/3 - 12px);}
+      }
+    }
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    .flowList{
+      &>li{flex-basis: calc(#{$wwMaximum}*.82/3 - 12px);
+        img{height: calc(#{$wwMaximum}*.82/3 - 12px);}
+      }
+    }
+  }
+
+}
+
+
+// 燈箱中的大圖
+.bigPhotoShow{ 
+  .flowBox{ position: relative; top: 50px;
+    width: 100%; height: calc(100vh - 6vw - 130px);
+  }
+  .flowList{
+    &>li{ position: absolute; left: 100%; top: calc(45vh - 60vw);
+      width: 94vw;height: 94vw; text-align: center;
+      // border : 1px dashed #f60;
+      // transition: left .4s;
+      &.show{left: 0;}
+      img{display: block; margin: 0 auto; width: 100%; height: 100%;max-height: calc(100vh - 6vw - 140px); object-fit: contain;}
+      p{padding: 10px; margin: 0; color: $fontInvert; display: inline-block; line-height: 1.6;
+        min-height: 2em; text-align: left;
+      }
+    }
+  }
+
+  .diskBtn{ position: absolute; bottom: -10px; margin:0 5px auto; 
+    transform: translateY(100%);
+    &.next{left: auto; right: 0;}
+  }
+
+  @media screen and (min-width: $wwMedium){
+    .flowList>li{
+      top: 0; height: calc(100% - 6vw - 60px);
+    }
+  }
+
+  @media screen and (min-width: $wwNormal){
+    .flowList>li{
+      height: calc(100% - 60px);
+    }
+  }
+
+  @media screen and (min-width: $wwMaximum){
+    .flowBox{ width: $wwMaximum*.94; }
+    .flowList>li{width: 100%;
+      // img{ height: calc(100% - 6vw - 140px); width: 100%;}
+      // height: calc(100vh - 6vw);
+      p{margin-left: 70px; margin-right: 70px;}
+    }
+  }
+
+}
+
+// Related Photos 相關照片
+.lightbox.bigPhoto{
+  background-color: transparent; box-shadow: none;
 }
