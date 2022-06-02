@@ -64,11 +64,13 @@ table.formLayout {
 // 表單樣式
 .formA{
   margin-bottom: 3em;
-  .formLayout{width: 90%;}
+  .formLayout{
+    width: 90%; margin: 30px auto;
+  }
   h3{ 
-    width: 90%;margin: 0 auto; padding: 0 0 10px; overflow: hidden; 
+    width: 90%;margin: 0 auto -4px; padding: 0; overflow: hidden; 
     font-size: 1.3rem; 
-    .handle{float: right; font-weight: bold;}
+    .handle{float: right; font-weight: bold; }
   }
   @media screen and (max-width: $wwMedium - 1) {
     .formLayout{width: 100%;}
@@ -80,13 +82,20 @@ table.formLayout {
 // 開合區
 .drawer{
   button.handle{
-    position: relative; height: 2.4em; line-height: 2.4; min-width: 8em;
-    padding: 0 44px 0 28px;text-align: left;
+    position: relative; height: 2.5em; line-height: 2.4; min-width: 8em;
+    padding: 0 44px 0 28px; text-align: left;
     background-color: $grayLight; color: $fontColor; border-color: $gray;
+    border-radius: 6px 6px 0 0;
     font-size: inherit;
 
-    &:hover, &:focus{ background-color: $grayLight;border-color: $assistant1; box-shadow: none;}
-    &:focus { box-shadow: $assistant1 0 0 0 1px;}
+    &:hover, &:focus{ 
+      background-color: $assistant1; border-color: $assistant1; box-shadow: none;
+      color: $fontInvert;
+      &::after{
+        border-color: $fontInvert;
+      }
+    }
+    &:focus { box-shadow: $assistant1 0 0 0 2px;}
 
     &::after{
       content: ''; position: absolute; right: 20px; top: 50%; margin-top: -3px;
@@ -96,11 +105,19 @@ table.formLayout {
     }
 
     &.openIt{
+      border-radius: 6px;
       &::after{
         transform: rotate(225deg); margin-top: -8px;
       }
     }
   }
 
-  .tray {clear: both;}
+  .tray {
+    clear: both; position: relative;
+    border: 1px solid  $borderColorLight;
+    background: #fff;
+    box-shadow: rgba(0,0,0,.2) 0 0 8px inset;
+    // background: #fff;
+    border-radius: 15px;
+  }
 }

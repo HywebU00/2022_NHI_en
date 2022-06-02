@@ -198,15 +198,17 @@ $(function(){
     let _this = $(this);
     let _handle = _this.find('.handle');
     let _tray = _this.find('.tray');
-    const speed = 400;
+    const speed = 500;
 
     _handle.click(function () {
       if (_tray.is(':hidden')) {
-        _tray.slideDown(speed);
+        _tray.stop(true, false).slideDown(speed);
         _handle.removeClass('openIt');
       } else {
-        _tray.slideUp(speed);
-        _handle.addClass('openIt');
+        _tray.stop(true, false).slideUp(speed, function(){
+
+          _handle.addClass('openIt');
+        })
       }
     })
   })
