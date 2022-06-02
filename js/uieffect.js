@@ -500,28 +500,33 @@ $(function(){
   // 查詢區開合 -----------------------------------------------------
   var _searchCtrl = $('.searchCtrl');
   var _search = $('.search');
-  var _closeSearch = _search.find('.closeThis');
+  _search.append('<button class="skip" type="button"></button>');
+  var _skipSearch = _search.find('.skip');
+  const srSpeed = 510;
+  // var _closeSearch = _search.find('.closeThis');
   _searchCtrl.click(function(){
     if( _search.hasClass('reveal')) {
-      searchHide();
+      _search.removeClass('reveal');
+      setTimeout(function(){_search.hide()}, srSpeed);
     } else {
       _search.show(0, function(){
-        $(this).addClass('reveal');
+        _search.addClass('reveal').find('input[type="text"]').focus();
       });
     }
   })
 
-  _search.find('input[type="text"]').focus(function(){
-    _search.addClass('reveal').show();
+    _search.find('input[type="text"]').focus(function(){
+    _search.addClass('reveal');
   })
 
-  _closeSearch.click(function () {
-    searchHide();
-  })
-  function searchHide(){
+  _skipSearch.focus(function(){
     _search.removeClass('reveal');
-    setTimeout(function(){_search.removeAttr('style').hide()}, 800);
-  }
+    setTimeout(function(){_search.hide()}, srSpeed);
+    _searchCtrl.focus();
+  })
+
+
+  // --end of-- 查詢區 -----------------------------------------------------
 
 
   // fatfooter 開合 -----------------------------------------------------

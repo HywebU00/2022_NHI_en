@@ -75,7 +75,7 @@
 // ---------- 快速查詢區
 .search { 
   display: none;
-  position: absolute; top: 67px; left: auto; right: 0; z-index: 99;
+  position: absolute; top: 67px; left: auto; right: 0; z-index: 8;
   width: 100vw; max-width:500px; padding: 24px 5vw 10px;
   transform: translateX(100%);
   background:$grayDark; color: darken($fontInvert, 20%);
@@ -116,12 +116,19 @@
     }
   }
 
+  .skip{
+    position: absolute; right: 0; width: 1px; height: 1px; padding: 0; opacity: 0;
+  }
+
 
   @media screen and (min-width: $wwNormal){
-    top: 92px; right: 0; width: 420px; padding: 30px 30px 12px;
+    top: 100px; right: 0; left: auto;
+    width: 420px; padding: 30px 30px 12px;
     background: transparentize($grayDark, .15);
-    transform:translateX(100%);
+    transform:translateX(0) translateY(-100%);
     transition: transform .5s;
+
+    &.reveal{transform:translateY(0)}
   }
 
   @media screen and (min-width: $wwMaximum){
