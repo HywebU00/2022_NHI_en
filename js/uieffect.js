@@ -515,9 +515,10 @@ $(function(){
     }
   })
 
-    _search.find('input[type="text"]').focus(function(){
-    _search.addClass('reveal');
-  })
+  // _search.find('input[type="text"]').focus(function () {
+  //   _search.addClass('reveal');
+  // })
+
 
   _skipSearch.focus(function(){
     _search.removeClass('reveal');
@@ -525,6 +526,22 @@ $(function(){
     _searchCtrl.focus();
   })
 
+  _body.keydown(function(e){
+    // 未完成
+    // // --- if mac
+    // if ( (e.ctrlKey) && ( e.altKey ) && (e.keyCode != 17) && (e.keyCode != 18)  ) {
+    //   if ( e.keyCode == 83 ) {
+    //      _search.show().addClass('reveal');
+    //   }
+    // }
+
+    // --- if windows
+    if ( ( e.altKey ) && (e.keyCode != 18) ) {
+      if ( e.keyCode == 83 ) {
+        _search.show().addClass('reveal').find('input[type="text"]').focus();
+      }
+    }
+  })
 
   // --end of-- 查詢區 -----------------------------------------------------
 
