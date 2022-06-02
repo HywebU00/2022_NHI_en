@@ -85,17 +85,17 @@ table.formLayout {
     position: relative; height: 2.5em; line-height: 2.4; min-width: 8em;
     padding: 0 44px 0 28px; text-align: left;
     background-color: $grayLight; color: $fontColor; border-color: $gray;
-    border-radius: 6px 6px 0 0;
+    border-radius: 5px 5px 0 0;
     font-size: inherit;
 
     &:hover, &:focus{ 
-      background-color: $assistant1; border-color: $assistant1; box-shadow: none;
+      background-color: $fontColorLight; border-color: $fontColorLight; box-shadow: none;
       color: $fontInvert;
       &::after{
         border-color: $fontInvert;
       }
     }
-    &:focus { box-shadow: $assistant1 0 0 0 2px;}
+    &:focus { box-shadow: $fontColorLight 0 0 0 2px;}
 
     &::after{
       content: ''; position: absolute; right: 20px; top: 50%; margin-top: -3px;
@@ -105,7 +105,7 @@ table.formLayout {
     }
 
     &.openIt{
-      border-radius: 6px;
+      border-radius: 5px;
       &::after{
         transform: rotate(225deg); margin-top: -8px;
       }
