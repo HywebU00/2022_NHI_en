@@ -13,7 +13,7 @@ body{
     padding: 60px 0 120px;
     @extend %mainWidth;
 
-    &.smallFont{ font-size: .9375rem;}
-    &.largrFont{ font-size: 1.125rem;}
+    &.smallFont{ font-size: .9375em;}
+    &.largeFont{ font-size: 1.25em;}
   }
 }

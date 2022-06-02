@@ -21,13 +21,14 @@
     &>ul{
       // 第一層
       &>li{
-       margin: 0 0 2em; font-size: 1.2rem; font-weight: bold;
+       margin: 0 0 2em; 
         &>a{
           padding: .6em 2px 0;
+          font-size: 1.125em; font-weight: bold;
           border-bottom: 3px solid $assistant1;color: $fontColor;
           &:hover, &:focus{ box-shadow: $primaryColor 0 1px 0; border-color: $primaryColor;}
         }
-        ul{ font-weight: normal;font-size: 1rem;}
+        ul{ font-weight: normal;font-size: 1em;}
         li{ margin:0 0 4px; text-indent: 0;
           a{ position: relative; padding: .8em 3px 0 2em; }
           .order { display: inline-block;}

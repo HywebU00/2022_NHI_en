@@ -1,6 +1,6 @@
 
 .webHeader{
-  position: relative; padding: 0;
+  position: relative; padding: 0; width: 100vw;
   background-color: #bed7ea;
   &::after{
     content: ''; 
@@ -117,7 +117,8 @@
   }
 
   .skip{
-    position: absolute; right: 0; width: 1px; height: 1px; padding: 0; opacity: 0;
+    position: absolute; right: 0; width: 1px; height: 1px;
+    padding: 0; opacity: 0;
   }
 
 
@@ -132,7 +133,7 @@
   }
 
   @media screen and (min-width: $wwMaximum){
-    &.reveal{ transform:translateX(calc( #{$wwMaximum}*.5 - 50vw ));}
+    right:calc( 50vw - #{$wwMaximum}/2);
   }
 
 }

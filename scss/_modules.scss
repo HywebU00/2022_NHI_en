@@ -1,6 +1,6 @@
 // 現在位置（麵包屑） //
 .breadcrumb {
-  margin: 5px auto;
+  margin: 5px auto; font-size: 1rem;
   ul, li{ list-style: none; margin: 0;padding: 0;}
   ul{line-height: 1.2; overflow: hidden; }
   li{float: left; position: relative;color: $fontColor;
@@ -22,7 +22,7 @@
 // 內頁標題 //
 .pageHeader{
   margin: 2em auto 1em;
-  color: $fontColorDark; font-size: 1.5rem; line-height: 1.5;
+  color: $fontColorDark; font-size: 1.5em; line-height: 1.5;
   h2{
     padding: 0; margin: 0;
   }
@@ -89,9 +89,9 @@
 // 文字大小 //
 .fontSize{
   button{ line-height: 44px;}
-  .small{ font-size: .85rem;}
-  .medium{ font-size: 1.125rem;}
-  .large{ font-size: 1.3rem;}
+  .smallFont{ font-size: .85rem;}
+  .mediumFont{ font-size: 1.125rem;}
+  .largeFont{ font-size: 1.3rem;}
 }
 
 

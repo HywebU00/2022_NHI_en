@@ -182,11 +182,24 @@ $(function(){
   var _fontSize = $('.fontSize');
   var _fontSizeBtn = _fontSize.children('button');
   var _fsOption = _fontSize.find('ul>li>button');
+  const fontClassS = "smallFont";
+  const fontClassL = "largeFont";
+  var _innerMain = $('.main.inner');
 
   _fsOption.click(function(){
     let A = $(this).text();
     let fontClass = $(this).attr('class');
     _fontSizeBtn.removeClass().text( A ).addClass(fontClass);
+
+    // font size：改變字體大小
+    if ( fontClass == fontClassS) {
+      _innerMain.removeClass(fontClassL).addClass(fontClass);
+    } else if ( fontClass == fontClassL ) {
+      _innerMain.removeClass(fontClassS).addClass(fontClass);
+    } else {
+      _innerMain.removeClass(fontClassS).removeClass(fontClassL);
+    }
+
   })
 
 
@@ -504,14 +517,14 @@ $(function(){
   _search.append('<button class="skip" type="button"></button>');
   var _skipSearch = _search.find('.skip');
   const srSpeed = 510;
-  // var _closeSearch = _search.find('.closeThis');
   _searchCtrl.click(function(){
     if( _search.hasClass('reveal')) {
       _search.removeClass('reveal');
       setTimeout(function(){_search.hide()}, srSpeed);
     } else {
       _search.show(0, function(){
-        _search.addClass('reveal').find('input[type="text"]').focus();
+        _search.addClass('reveal');
+        setTimeout (function(){_search.find('input[type="text"]').focus()}, srSpeed);
       });
     }
   })

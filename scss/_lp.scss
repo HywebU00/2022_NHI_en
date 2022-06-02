@@ -3,7 +3,7 @@
   position: relative; margin: 20px auto 0;  background: #fff;
   &>ul{
     list-style: none; margin: 0; padding: 0;
-    line-height: 1.5; font-size: 1.125rem;
+    line-height: 1.5; font-size: 1.125em;
     border-top: 3px solid $borderColor; border-bottom: 3px solid $borderColor;
     &>li{
       border-bottom: 1px solid $borderColorLight; margin: 0; padding: 0;
@@ -73,7 +73,7 @@
       &.numb{ text-align: right; 
         &::after{content: '.'; position: static;}
       }
-      &[data-th="Title"], &[data-th="title"] { text-align: left; font-size: 1.2em; }
+      &[data-th="Title"], &[data-th="title"] { text-align: left; font-size: 1.125em; }
       &>a{
         color: $linkColor; text-decoration: none; transition: .2s;
         &:hover, &:focus{
