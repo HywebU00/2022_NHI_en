@@ -206,7 +206,6 @@ $(function(){
         _handle.removeClass('openIt');
       } else {
         _tray.stop(true, false).slideUp(speed, function(){
-
           _handle.addClass('openIt');
         })
       }

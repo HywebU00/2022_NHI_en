@@ -12,5 +12,8 @@ body{
   &.inner{
     padding: 60px 0 120px;
     @extend %mainWidth;
+
+    &.smallFont{ font-size: .9375rem;}
+    &.largrFont{ font-size: 1.125rem;}
   }
 }

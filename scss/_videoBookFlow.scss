@@ -13,6 +13,9 @@
         display: block; width: 100%; height: 100%; object-fit: cover;
         transition: .25s;
       }
+
+      &::before, &:after{display: none;}
+
     }
     h3{
       margin:20px auto; padding: 0; line-height: 1.4;

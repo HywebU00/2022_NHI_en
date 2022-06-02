@@ -1,8 +1,10 @@
 .thumbnail{
   margin: 20px auto 0;
   ul{list-style: none; margin: 0; padding: 0;}
-  &>ul{ line-height: 1.1;
-    &>li{ margin: 0 0 16px;
+  &>ul{
+    line-height: 1.1;
+    &>li{
+      margin: 0 0 16px;
       &>a{
         position: relative; display: block;height: 100%;padding: 8px;
         background: #fff;  color: $fontColor; text-decoration: none;
@@ -33,7 +35,8 @@
         display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 2;
         overflow: hidden;
       }
-      p{ margin: .5em 0; font-size: 1.15em; line-height: 1.5;
+      p{ 
+        margin: .5em 0; line-height: 1.5;
         display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;
         overflow: hidden;
       }
@@ -42,8 +45,10 @@
   }
 
   @media screen and (min-width: $wwMedium){
-    &>ul{ display: flex; flex-flow: row wrap; justify-content: flex-start;
-      &>li{ flex: 0 0 calc(50% - 8px); margin-right: 16px;
+    &>ul{
+      display: flex; flex-flow: row wrap; justify-content: flex-start;
+      &>li{
+        flex: 0 0 calc(50% - 8px); margin-right: 16px;
         &:nth-child(2n){ margin-right: 0;}
         img{height: calc(#{$mobileWidth}/2 - 24px); object-fit: contain; background: $grayLight;}
         .videoThumb{ height:calc((#{$mobileWidth}/2 - 24px)*.56);}
@@ -53,14 +58,14 @@
 
   @media screen and (min-width: $wwNormal){
     &>ul{ 
-      &>li{ margin-bottom: 15px;
-        flex-basis: calc(33.33% - 10px);
-        &:nth-child(n){margin-right: 15px;} 
-        &:nth-child(3n){margin-right: 0;}
+      &>li{ 
+        flex-basis: calc(25% - 12px);
+        &:nth-child(n){margin-right: 16px;} 
+        &:nth-child(4n){margin-right: 0;}
 
         &>a:hover{ transform: translateY(-4px);}
-        img{height: calc(33.33vw - 96px); }
-        .videoThumb{ height: calc((33.33vw - 96px)*.56);}
+        img{height: calc(#{$normalWidth}/4 - 28px); }
+        .videoThumb{ height: calc(#{$normalWidth}*.14 - 15px);}
       }
     }
   }
@@ -68,8 +73,8 @@
   @media screen and (min-width: $wwMaximum){
     &>ul{ 
       &>li{
-        img{height: calc(#{$wwMaximum}/3 - 96px);}
-        .videoThumb{height: calc((#{$wwMaximum}/3 - 96px)*.56);}
+        img{height: calc(#{$wwMaximum}*.205 - 28px);}
+        .videoThumb{height: calc( #{$wwMaximum}*.1148 - 15px);}
       }
     }
   }
