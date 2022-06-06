@@ -183,27 +183,24 @@ $(function(){
   var _fontSize = $('.fontSize');
   var _fontSizeBtn = _fontSize.children('button');
   var _fsOption = _fontSize.find('ul>li>button');
-  const fontClassS = "smallFont";
-  const fontClassL = "largeFont";
+  var fontClass = _fontSizeBtn.attr('class');
   var _innerMain = $('.main.inner');
 
   _fsOption.click(function(){
-    let A = $(this).text();
-    let fontClass = $(this).attr('class');
-    _fontSizeBtn.removeClass().text( A ).addClass(fontClass);
+    fontClass = $(this).attr('class');
+    _fontSizeBtn.removeClass().addClass(fontClass);
 
     // font size：改變字體大小
-    if ( fontClass == fontClassS) {
-      _innerMain.removeClass(fontClassL).addClass(fontClass);
+    if ( fontClass == 'smallFont') {
+      _innerMain.removeClass('largeFont').addClass(fontClass);
       createCookie('FontSize', 'small', 365);
-    } else if ( fontClass == fontClassL ) {
-      _innerMain.removeClass(fontClassS).addClass(fontClass);
+    } else if ( fontClass == 'largeFont' ) {
+      _innerMain.removeClass('smallFont').addClass(fontClass);
       createCookie('FontSize', 'large', 365);
     } else {
-      _innerMain.removeClass(fontClassS).removeClass(fontClassL);
+      _innerMain.removeClass('largeFont smallFont');
       createCookie('FontSize', 'medium', 365);
     }
-
   })
 
   function createCookie(name, value, days) {
@@ -211,9 +208,14 @@ $(function(){
       var date = new Date();
       date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
       var expires = '; expires=' + date.toGMTString();
-    } else expires = '';
+    } else {
+      expires = '';
+    }
     document.cookie = name + '=' + value + expires + '; path=/';
+    // else expires = '';
+    // document.cookie = name + '=' + value + expires + '; path=/';
   }
+
   function readCookie(name) {
     var nameEQ = name + '=';
     var ca = document.cookie.split(';');
@@ -224,32 +226,20 @@ $(function(){
     }
     return null;
   }
-window.onload = function(e) {
+
+
+  window.onload = function () {
     var cookie = readCookie('FontSize');
-    //alert('cookie='+cookie);
-    if (cookie == 'small') {
-        //$('.font_size').find('.small').click();
-        $('.font_size').find('.small').parent('li').siblings('li').find('a').removeClass('active');
-        $('.innerpage').removeClass('large_size medium_size').addClass('small_size');
-        $('.font_size').find('.small').addClass('active');
-        e.preventDefault();
+
+    // alert('cookie='+cookie);
+    if ( cookie == 'small' ) {
+      _innerMain.add(_fontSizeBtn).removeClass('largeFont mediumFont').addClass('smallFont');
+    } else if ( cookie == 'large' ) {
+      _innerMain.add(_fontSizeBtn).removeClass('smallFont mediumFont').addClass('largeFont');
     } else {
-        if (cookie == 'large') {
-            //$('.font_size').find('.large').click();
-            $('.font_size').find('.large').parent('li').siblings('li').find('a').removeClass('active');
-            $('.innerpage').removeClass('small_size medium_size').addClass('large_size');
-            $('.font_size').find('.large').addClass('active');
-            e.preventDefault();
-        } else {
-            //這裡是預設宣告
-            //$('.font_size').find('.medium').click();
-            $('.font_size').find('.medium').parent('li').siblings('li').find('a').removeClass('active');
-            $('.innerpage').removeClass('large_size small_size');
-            $('.font_size').find('.medium').addClass('active');
-            e.preventDefault();
-        }
+      _innerMain.add(_fontSizeBtn).removeClass('smallFont largeFont');
     }
-}
+  }
 
 
 

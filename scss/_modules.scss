@@ -89,9 +89,13 @@
 // 文字大小 //
 .fontSize{
   button{ line-height: 44px;}
-  .smallFont{ font-size: .85rem;}
+  .smallFont{ font-size: .85rem;
+    &::after{content: '-';}
+  }
   .mediumFont{ font-size: 1.125rem;}
-  .largeFont{ font-size: 1.3rem;}
+  .largeFont{ font-size: 1.3rem;
+    &::after{content: '+';}
+  }
 }
 
 
