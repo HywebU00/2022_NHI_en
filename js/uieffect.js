@@ -183,24 +183,25 @@ $(function(){
   var _fontSize = $('.fontSize');
   var _fontSizeBtn = _fontSize.children('button');
   var _fsOption = _fontSize.find('ul>li>button');
-  var fontClass = _fontSizeBtn.attr('class');
   var _innerMain = $('.main.inner');
 
   _fsOption.click(function(){
-    fontClass = $(this).attr('class');
+    let fontClass = $(this).attr('class');
     _fontSizeBtn.removeClass().addClass(fontClass);
+    _innerMain.removeClass('largeFont mediumFont smallFont').addClass(fontClass);
+    createCookie('FontSize', fontClass , 365);
 
-    // font size：改變字體大小
-    if ( fontClass == 'smallFont') {
-      _innerMain.removeClass('largeFont').addClass(fontClass);
-      createCookie('FontSize', 'small', 365);
-    } else if ( fontClass == 'largeFont' ) {
-      _innerMain.removeClass('smallFont').addClass(fontClass);
-      createCookie('FontSize', 'large', 365);
-    } else {
-      _innerMain.removeClass('largeFont smallFont');
-      createCookie('FontSize', 'medium', 365);
-    }
+    // font size：改變 _innerMain 字體大小
+    // if ( fontClass == 'smallFont') {
+    //   _innerMain.removeClass('largeFont').addClass(fontClass);
+    //   createCookie('FontSize', 'small', 365);
+    // } else if ( fontClass == 'largeFont' ) {
+    //   _innerMain.removeClass('smallFont').addClass(fontClass);
+    //   createCookie('FontSize', 'large', 365);
+    // } else {
+    //   _innerMain.removeClass('largeFont smallFont');
+    //   createCookie('FontSize', 'medium', 365);
+    // }
   })
 
   function createCookie(name, value, days) {
@@ -231,14 +232,20 @@ $(function(){
   window.onload = function () {
     var cookie = readCookie('FontSize');
 
+    _innerMain.removeClass('largeFont mediumFont smallFont').addClass(cookie);
+    _fontSizeBtn.removeClass().addClass(cookie);
+
     // alert('cookie='+cookie);
-    if ( cookie == 'small' ) {
-      _innerMain.add(_fontSizeBtn).removeClass('largeFont mediumFont').addClass('smallFont');
-    } else if ( cookie == 'large' ) {
-      _innerMain.add(_fontSizeBtn).removeClass('smallFont mediumFont').addClass('largeFont');
-    } else {
-      _innerMain.add(_fontSizeBtn).removeClass('smallFont largeFont');
-    }
+    // if ( cookie == 'small' ) {
+    //   _innerMain.removeClass('largeFont').addClass('smallFont');
+    //   _fontSizeBtn.removeClass().addClass('smallFont');
+    // } else if ( cookie == 'large' ) {
+    //   _innerMain.removeClass('smallFont ').addClass('largeFont');
+    //   _fontSizeBtn.removeClass().addClass('largeFont');
+    // } else {
+    //   _innerMain.removeClass('smallFont largeFont');
+    //   _fontSizeBtn.removeClass();
+    // }
   }
 
 
