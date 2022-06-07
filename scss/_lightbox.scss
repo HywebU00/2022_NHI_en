@@ -9,11 +9,11 @@
   background:#000; box-shadow:rgba(0,0,0,.6) 0 0 28px; 
 
   .closeThis{
-    position: absolute; right:2px; top: 2px; z-index:99;
+    position: absolute; right:0; top: 0; z-index:99;
     margin: 0; padding: 0; border-radius: 0;
     background-color: rgba(0,0,0,.6);
-    &:hover, &:focus{ background-color: $assistant1; }
-    &:focus{box-shadow: $assistant1 0 0 0 2px;}
+    &:hover { background-color: $assistant1; }
+    &:focus{background-color: $btnBg2; box-shadow:none;}
   }
 
   .head {
@@ -30,18 +30,16 @@
 
   .skip{
     position: absolute; right: 0; bottom: 0;
-    width: 1px; height: 1px;
+    width: 1px; height: 1px; padding: 0;
     background-color: transparent; border: none; box-shadow: none;
   }
  
   @media screen and (min-width:$wwNormal){
     top: $wwNormal*.03; height: calc(100vh - #{$wwNormal}*.06);
-    // .closeThis{ top: $wwNormal*.03; }
   }
   
   @media screen and (min-width: $wwMaximum){
     width: $wwMaximum*.94; left:calc(50vw - #{$wwMaximum}*.47);
-    // .closeThis{right:calc(50vw - #{$wwMaximum}*.47) }
   }
 
 }

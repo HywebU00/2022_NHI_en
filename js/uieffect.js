@@ -297,9 +297,54 @@ $(function(){
   })
 
 
+
+
+
+
+    // ////////////////////////////////////////////
+  // 燈箱 ---------------------------------------
+  var _lightbox = $('.lightbox');
+  var _hideLightbox = _lightbox.find('.closeThis');
+  var _lightboxNow;
+  const lbxSpeed = 400;
+
+  _lightbox.before('<div class="coverAll"></div>');
+  _lightbox.append('<button type="button" class="skip"></button>');
+  var _cover = $('.coverAll');
+  var _skipToClose = _lightbox.find('.skip');
+
+  _skipToClose.focus( function () {
+    _hideLightbox.focus();
+  })
+
+  // 關燈箱
+  _hideLightbox.click(function(){
+    let _targetLbx = $(this).parents('.lightbox');
+    _targetLbx.stop(true, false).fadeOut(lbxSpeed,
+      function(){
+        _targetLbx.removeClass('show');
+        _cpBigPhoto.find('.flowList').find('li').hide();
+      }
+    );
+    _targetLbx.prev(_cover).fadeOut(lbxSpeed);
+    _body.removeClass('noScroll');
+  })
+
+  _cover.click(function(){
+    let _targetLbx = $(this).next('.lightbox');
+    $(this).fadeOut(lbxSpeed);
+    _body.removeClass('noScroll');
+    _targetLbx.fadeOut(lbxSpeed,
+      function(){
+        _targetLbx.removeClass('show');
+      }
+    );
+  })
+
+
   //////////////////////////////////////
-  // ----- .photoflow：cp頁的照片 
-  // 要在燈箱中顯示大圖
+  // .photoflow：cp頁的相關圖片（Related Photos）
+  // 點擊圖片要開燈箱並顯示大圖
   var _photoflow = $('.photoflow');
   var _cpBigPhoto = $('.lightbox.bigPhotos');
   var photoIndex;
@@ -319,20 +364,17 @@ $(function(){
     let j;
     let _dots = '';
 
-
-
     // 產生 indicator 和 自訂屬性 data-index
     _floxBox.append('<div class="flowNav"><ul></ul></div>');
     let _indicator = _this.find(".flowNav>ul");
     for (let n = 0; n < slideCount; n++) {
       _dots = _dots + '<li></li>';
       _flowItem.eq(n).attr('data-index', n);
-      // _cpBigPhoto.find('.flowList>li').eq(n).attr('data-index', n);
     }
     _indicator.append(_dots);
 
-    // 複製到燈箱中
-    _floxBox.clone().appendTo(_cpBigPhoto);
+    // 複製到燈箱中 *** //
+    _floxBox.clone().insertBefore(_skipToClose);
 
     let _indicatItem = _indicator.find('li');
     _indicatItem.eq(i).addClass(actClassName);
@@ -368,7 +410,7 @@ $(function(){
           flownavShow();
           _indicatItem.eq((i + 1) % slideCount).addClass(actClassName);
           _indicatItem.eq((i + 2) % slideCount).addClass(actClassName);
-          // _indicatItem.eq((i + 3) % slideCount).addClass(actClassName);
+          _indicatItem.eq((i + 3) % slideCount).addClass(actClassName);
         }
       }
     }
@@ -385,13 +427,12 @@ $(function(){
         _flowItem.eq(i).appendTo(_flowList);
         _indicatItem.eq(i).removeClass(actClassName);
         _indicatItem.eq(j).addClass(actClassName);
-        // _indicatItem.eq((j + 1) % slideCount).addClass(actClassName);
         _flowList.css('margin-left', 0);
         if (ww >= wwMedium) {
           _indicatItem.eq((j + 1) % slideCount).addClass(actClassName);
         }
         if (ww >= wwNormal) {
-          _indicatItem.eq((j + 2) % slideCount).addClass(actClassName);
+          _indicatItem.eq((j + 3) % slideCount).addClass(actClassName);
         }
         i = j;
       });
@@ -404,11 +445,10 @@ $(function(){
       _flowList.stop(true, false).animate({ "margin-left": 0 }, speed, function () {
           _indicatItem.eq(j).addClass(actClassName);
           if (ww >= wwNormal) {
-            _indicatItem.eq((i + 2) % slideCount).removeClass(actClassName);
+            _indicatItem.eq((i + 3) % slideCount).removeClass(actClassName);
           } else if (ww >= wwMedium) {
             _indicatItem.eq((i + 1) % slideCount).removeClass(actClassName);
           } else {
-            // _indicatItem.eq((i + 1) % slideCount).removeClass(actClassName);
             _indicatItem.eq(i).removeClass(actClassName);
           }
           i = j;
@@ -428,31 +468,19 @@ $(function(){
       threshold: 20,
     });
 
-    // tab focus
-    // let tabCount = 0;
-    // _flowItem.children('a').focus(function (e) { 
-    //   e.preventDefault();
-    //   if ( tabCount > 0 && tabCount <= slideCount) {
-    //     slideForward();
-    //   }
-    //   tabCount++
-    //   if(tabCount > slideCount) {
-    //     _btnLeft.focus();
-    //     tabCount = 0;
-    //   }
-    // });
 
 
 
     /////////////////************************** *//
-    // 開燈箱
+    // 點擊.photoflow的圖片，開燈箱顯示大圖
     _flowItem.children('a').click(function(){
       photoIndex = $(this).parent().attr('data-index');
       //console.log(photoIndex);
-      _cpBigPhoto.fadeIn().find('.flowList').find('li').filter( function(){
+      _cpBigPhoto.stop(true, false).fadeIn().find('.flowList').find('li').filter( function(){
         return $(this).attr('data-index') == photoIndex;
       }).show();
-      _cover.fadeIn();
+      _hideLightbox.focus();
+      _cover.stop(true, false).fadeIn();
     })
 
     let winResizeTimer;
@@ -466,6 +494,8 @@ $(function(){
     });
 
   });
+
+
 
   // cp 頁大圖燈箱
   _cpBigPhoto.each(function(){
@@ -490,12 +520,12 @@ $(function(){
 
       _photoItem.filter( function(){
         return $(this).attr('data-index') == i;
-      }).fadeOut(speed, function(){
+      }).stop(true, false).fadeOut(speed, function(){
         $(this).hide();
       });
       _photoItem.filter( function(){
         return $(this).attr('data-index') == j;
-      }).fadeIn(speed);
+      }).stop(true, false).fadeIn(speed);
     })
     
     // 點擊向左箭頭
@@ -505,58 +535,18 @@ $(function(){
 
       _photoItem.filter(function(){
         return $(this).attr('data-index') == i;
-      }).fadeOut(speed, function(){
+      }).stop(true, false).fadeOut(speed, function(){
         $(this).hide();
       });
       _photoItem.filter( function(){
         return $(this).attr('data-index') == j;
-      }).fadeIn(speed);
+      }).stop(true, false).fadeIn(speed);
     })
   })
 
 
 
-  // 燈箱 ---------------------------------------
-  // var _showLightbox =  $('.showLightbox');
-  var _lightbox = $('.lightbox');
-  var _hideLightbox = _lightbox.find('.closeThis');
-  var _lightboxNow;
-  // var xxxNow;
-  const lbxSpeed = 400;
 
-  _lightbox.before('<div class="coverAll"></div>');
-  _lightbox.append('<button type="button" class="skip"></button>');
-  var _cover = $('.coverAll');
-  var _skipToClose = _lightbox.find('.skip');
-
-  _skipToClose.focus( function () {
-    _lightboxNow.find('.closeThis').focus();
-  })
-
-  // 關燈箱
-  _hideLightbox.click(function(){
-    let _targetLbx = $(this).parents('.lightbox');
-    _targetLbx.stop(true, false).fadeOut(lbxSpeed,
-      function(){
-        _targetLbx.removeClass('show');
-        // xxxNow.focus();
-        _cpBigPhoto.find('.flowList').find('li').hide();
-      }
-    );
-    _targetLbx.prev(_cover).fadeOut(lbxSpeed);
-    _body.removeClass('noScroll');
-  })
-
-  _cover.click(function(){
-    let _targetLbx = $(this).next('.lightbox');
-    $(this).fadeOut(lbxSpeed);
-    _body.removeClass('noScroll');
-    _targetLbx.fadeOut(lbxSpeed,
-      function(){
-        _targetLbx.removeClass('show');
-      }
-    );
-  })
 
 
 
