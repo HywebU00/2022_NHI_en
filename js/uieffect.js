@@ -301,11 +301,10 @@ $(function(){
 
 
 
-    // ////////////////////////////////////////////
+  //////////////////////////////////////////////
   // 燈箱 ---------------------------------------
   var _lightbox = $('.lightbox');
   var _hideLightbox = _lightbox.find('.closeThis');
-  var _lightboxNow;
   const lbxSpeed = 400;
 
   _lightbox.before('<div class="coverAll"></div>');
@@ -322,7 +321,6 @@ $(function(){
     let _targetLbx = $(this).parents('.lightbox');
     _targetLbx.stop(true, false).fadeOut(lbxSpeed,
       function(){
-        _targetLbx.removeClass('show');
         _cpBigPhoto.find('.flowList').find('li').hide();
       }
     );
@@ -334,9 +332,9 @@ $(function(){
     let _targetLbx = $(this).next('.lightbox');
     $(this).fadeOut(lbxSpeed);
     _body.removeClass('noScroll');
-    _targetLbx.fadeOut(lbxSpeed,
+    _targetLbx.stop(true, false).fadeOut(lbxSpeed,
       function(){
-        _targetLbx.removeClass('show');
+        _cpBigPhoto.find('.flowList').find('li').hide();
       }
     );
   })
