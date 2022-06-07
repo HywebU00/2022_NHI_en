@@ -297,10 +297,12 @@ $(function(){
   })
 
 
-
+  //////////////////////////////////////
   // ----- .photoflow：cp頁的照片 
+  // 要在燈箱中顯示大圖
   var _photoflow = $('.photoflow');
-  var _cpBigPhoto = $('.lightbox.bigPhoto');
+  var _cpBigPhoto = $('.lightbox.bigPhotos');
+  var photoIndex;
   
   _photoflow.each(function () {
     let _this = $(this);
@@ -317,7 +319,7 @@ $(function(){
     let j;
     let _dots = '';
 
-    
+
 
     // 產生 indicator 和 自訂屬性 data-index
     _floxBox.append('<div class="flowNav"><ul></ul></div>');
@@ -325,12 +327,17 @@ $(function(){
     for (let n = 0; n < slideCount; n++) {
       _dots = _dots + '<li></li>';
       _flowItem.eq(n).attr('data-index', n);
-      _cpBigPhoto.find('.flowList>li').eq(n).attr('data-index', n);
+      // _cpBigPhoto.find('.flowList>li').eq(n).attr('data-index', n);
     }
     _indicator.append(_dots);
+
+    // 複製到燈箱中
+    _floxBox.clone().appendTo(_cpBigPhoto);
+
     let _indicatItem = _indicator.find('li');
     _indicatItem.eq(i).addClass(actClassName);
     _indicatItem.eq((i + 1) % slideCount).addClass(actClassName);
+
 
     // 依據可視的 slide 項目，決定 indicator 樣式
     indicatReady();
@@ -422,18 +429,31 @@ $(function(){
     });
 
     // tab focus
-    let tabCount = 0;
-    _flowItem.children('a').focus(function (e) { 
-      e.preventDefault();
-      if ( tabCount > 0 && tabCount <= slideCount) {
-        slideForward();
-      }
-      tabCount++
-      if(tabCount > slideCount) {
-        _btnLeft.focus();
-        tabCount = 0;
-      }
-    });
+    // let tabCount = 0;
+    // _flowItem.children('a').focus(function (e) { 
+    //   e.preventDefault();
+    //   if ( tabCount > 0 && tabCount <= slideCount) {
+    //     slideForward();
+    //   }
+    //   tabCount++
+    //   if(tabCount > slideCount) {
+    //     _btnLeft.focus();
+    //     tabCount = 0;
+    //   }
+    // });
+
+
+
+    /////////////////************************** *//
+    // 開燈箱
+    _flowItem.children('a').click(function(){
+      photoIndex = $(this).parent().attr('data-index');
+      //console.log(photoIndex);
+      _cpBigPhoto.fadeIn().find('.flowList').find('li').filter( function(){
+        return $(this).attr('data-index') == photoIndex;
+      }).show();
+      _cover.fadeIn();
+    })
 
     let winResizeTimer;
     _window.resize(function () {
@@ -447,7 +467,96 @@ $(function(){
 
   });
 
+  // cp 頁大圖燈箱
+  _cpBigPhoto.each(function(){
+    let _this = $(this);
+    let _photoBox = _this.find('.flowBox');
+    let _photoList = _photoBox.find('.flowList');
+    let _photoItem = _photoList.children('li');
+    let photoCount = _photoItem.length;
+    let _btnRight = _this.find('.diskBtn.next');
+    let _btnLeft = _this.find('.diskBtn.prev');
+    const speed = 400;
+    let i, j;
 
+    _photoItem.hide();
+
+    // 點擊向右箭頭
+    _btnRight.click(function(){
+      i = Number( _photoItem.filter(':visible').attr('data-index') );
+      j = (i+1) % photoCount;
+
+      // console.log(i, j);
+
+      _photoItem.filter( function(){
+        return $(this).attr('data-index') == i;
+      }).fadeOut(speed, function(){
+        $(this).hide();
+      });
+      _photoItem.filter( function(){
+        return $(this).attr('data-index') == j;
+      }).fadeIn(speed);
+    })
+    
+    // 點擊向左箭頭
+    _btnLeft.click(function(){
+      i = Number(_photoItem.filter(':visible').attr('data-index'));
+      j = (i-1+photoCount) % photoCount;
+
+      _photoItem.filter(function(){
+        return $(this).attr('data-index') == i;
+      }).fadeOut(speed, function(){
+        $(this).hide();
+      });
+      _photoItem.filter( function(){
+        return $(this).attr('data-index') == j;
+      }).fadeIn(speed);
+    })
+  })
+
+
+
+  // 燈箱 ---------------------------------------
+  // var _showLightbox =  $('.showLightbox');
+  var _lightbox = $('.lightbox');
+  var _hideLightbox = _lightbox.find('.closeThis');
+  var _lightboxNow;
+  // var xxxNow;
+  const lbxSpeed = 400;
+
+  _lightbox.before('<div class="coverAll"></div>');
+  _lightbox.append('<button type="button" class="skip"></button>');
+  var _cover = $('.coverAll');
+  var _skipToClose = _lightbox.find('.skip');
+
+  _skipToClose.focus( function () {
+    _lightboxNow.find('.closeThis').focus();
+  })
+
+  // 關燈箱
+  _hideLightbox.click(function(){
+    let _targetLbx = $(this).parents('.lightbox');
+    _targetLbx.stop(true, false).fadeOut(lbxSpeed,
+      function(){
+        _targetLbx.removeClass('show');
+        // xxxNow.focus();
+        _cpBigPhoto.find('.flowList').find('li').hide();
+      }
+    );
+    _targetLbx.prev(_cover).fadeOut(lbxSpeed);
+    _body.removeClass('noScroll');
+  })
+
+  _cover.click(function(){
+    let _targetLbx = $(this).next('.lightbox');
+    $(this).fadeOut(lbxSpeed);
+    _body.removeClass('noScroll');
+    _targetLbx.fadeOut(lbxSpeed,
+      function(){
+        _targetLbx.removeClass('show');
+      }
+    );
+  })
 
 
 
@@ -652,68 +761,67 @@ $(function(){
 
   // ======================================================================
 
+  // // 燈箱 ---------------------------------------
+  // // var _showLightbox =  $('.showLightbox');
+  // var _lightbox = $('.lightbox');
+  // var _hideLightbox = _lightbox.find('.closeThis');
+  // var _lightboxNow;
+  // // var xxxNow;
+  // const speed = 400;
 
+  // _lightbox.before('<div class="coverAll"></div>');
+  // _lightbox.append('<button type="button" class="skip"></button>');
+  // var _cover = $('.coverAll');
+  // var _skipToClose = _lightbox.find('.skip');
 
+  // _skipToClose.focus( function () {
+  //   _lightboxNow.find('.closeThis').focus();
+  // })
 
-  // 燈箱 ---------------------------------------
-  var _showLightbox =  $('.showLightbox');
-  var _lightbox = $('.lightbox');
-  var _hideLightbox = _lightbox.find('.closeThis');
-  var _lightboxNow;
-  var xxxNow;
-  const speed = 400;
+  // _hideLightbox.click(function(){
+  //   let _targetLbx = $(this).parents('.lightbox');
+  //   _targetLbx.stop(true, false).fadeOut(speed,
+  //     function(){
+  //       _targetLbx.removeClass('show');
+  //       // xxxNow.focus();
+  //     }
+  //   );
+  //   _targetLbx.prev(_cover).fadeOut(speed);
+  //   _body.removeClass('noScroll');
+  // })
 
-  _lightbox.before('<div class="coverAll"></div>');
-  _lightbox.append('<button type="button" class="skip"></button>');
-  var _cover = $('.coverAll');
-  var _skipToClose = _lightbox.find('.skip');
+  // _cover.click(function(){
+  //   let _targetLbx = $(this).next('.lightbox');
+  //   $(this).fadeOut(speed);
+  //   _body.removeClass('noScroll');
+  //   _targetLbx.fadeOut(speed,
+  //     function(){
+  //       _targetLbx.removeClass('show');
+  //     }
+  //   );
+  // })
+  // // _showLightbox.click(function(){
+  // //   let boxID = $(this).attr('data-id');
+  // //   xxxNow = $(this);
 
-  _showLightbox.click(function(){
-    let boxID = $(this).attr('data-id');
-    xxxNow = $(this);
+  // //   _lightboxNow = _lightbox.filter( function(){ return $(this).attr('data-id') === boxID} );
+  // //   _lightboxNow.stop(true, false).fadeIn(speed).addClass('show');
+  // //   _lightboxNow.find('.closeThis').focus();
+  // //   _lightboxNow.prev(_cover).fadeIn(speed);
+  // //   _body.addClass('noScroll');
 
-    _lightboxNow = _lightbox.filter( function(){ return $(this).attr('data-id') === boxID} );
-    _lightboxNow.stop(true, false).fadeIn(speed).addClass('show');
-    _lightboxNow.find('.closeThis').focus();
-    _lightboxNow.prev(_cover).fadeIn(speed);
-    _body.addClass('noScroll');
+  // //   _skipToClose.focus(function(){
+  // //     _lightboxNow.find('.closeThis').focus();
+  // //   })
+  // // })
 
-    _skipToClose.focus(function(){
-      _lightboxNow.find('.closeThis').focus();
-    })
-  })
-
-  _showLightbox.focus(function(){
-    $(this).keyup(function (e) { 
-      if( e.keyCode == 13 ){
-        $(this).trigger('click');
-      }
-    });
-  })
-
-  _hideLightbox.click(function(){
-    let _targetLbx = $(this).parents('.lightbox');
-    _targetLbx.stop(true, false).fadeOut(speed,
-      function(){
-        _targetLbx.removeClass('show');
-        xxxNow.focus();
-      }
-    );
-    _targetLbx.prev(_cover).fadeOut(speed);
-    _body.removeClass('noScroll');
-  })
-
-  _cover.click(function(){
-    let _targetLbx = $(this).next('.lightbox');
-    $(this).fadeOut(speed);
-    _body.removeClass('noScroll');
-    _targetLbx.fadeOut(speed,
-      function(){
-        _targetLbx.removeClass('show');
-      }
-    );
-  })
-
+  // // _showLightbox.focus(function(){
+  // //   $(this).keyup(function (e) { 
+  // //     if( e.keyCode == 13 ){
+  // //       $(this).trigger('click');
+  // //     }
+  // //   });
+  // // })
 
 
   // ----- end of 燈箱

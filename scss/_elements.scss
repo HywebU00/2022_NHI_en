@@ -239,6 +239,9 @@ button.closeThis{
     background-color: transparentize($secondaryColor, .2);
     box-shadow: none;
   }
+  &:focus{
+    box-shadow: #fff 0 0 0 1px, $secondaryColor 0 0 0 4px;
+  }
 }
 
 

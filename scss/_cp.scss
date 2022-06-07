@@ -178,12 +178,14 @@
 //（點擊左右箭頭滑動）photoflow
 .photoflow{ 
   $dotDia : 8px; // 點點直徑
+
   h3{
     margin: 0 0 .8em; padding: 0 0 .5em;
     border-bottom: 3px solid $borderColor;
   }
   .flowBox{
     position: relative; width:100%; overflow: hidden;
+    padding-bottom: 50px;
   }
 
   .flowList{
@@ -244,7 +246,7 @@
   }
 
   // 左右箭頭 button
-  .diskBtn{ top: $mobileWidth/2; }
+  .diskBtn{top: auto; bottom: -10px;}
 
   @media screen and (min-width: $wwMedium){
     .flowList{
@@ -256,11 +258,8 @@
     }
 
     .flowNav{
-      margin: 40px 70px;
+      margin: 40px 70px 0;
       li{margin: 0 12px;}
-    }
-    .diskBtn{
-      top: auto; bottom: 44px; transform: translateY(50%);
     }
   }
 
@@ -286,52 +285,38 @@
 
 
 // 燈箱中的大圖
-.bigPhotoShow{ 
-  .flowBox{ position: relative; top: 50px;
-    width: 100%; height: calc(100vh - 6vw - 130px);
+.bigPhotos{
+  .flowBox{
+    position: relative;margin: 0;width: 100%; height: 100%;    
   }
   .flowList{
-    &>li{ position: absolute; left: 100%; top: calc(45vh - 60vw);
-      width: 94vw;height: 94vw; text-align: center;
-      // border : 1px dashed #f60;
-      // transition: left .4s;
-      &.show{left: 0;}
-      img{display: block; margin: 0 auto; width: 100%; height: 100%;max-height: calc(100vh - 6vw - 140px); object-fit: contain;}
-      p{padding: 10px; margin: 0; color: $fontInvert; display: inline-block; line-height: 1.6;
-        min-height: 2em; text-align: left;
+    list-style: none; margin: 0; padding: 0;
+    &>li{
+      position: absolute; left: 0; top: 0;
+      width: 100%;height: 100%; text-align: center;
+      a{ display: block;width: 100%; height: 100%;}
+      img{
+        display: block; margin: 0 auto; width: 100%; height: 100%;
+        object-fit: contain;
+      }
+      p{
+        display: none;
+        position: absolute; left: 0; bottom: 0; width: 100%;
+        padding: 4em 20px 1em; margin: 0; line-height: 1.1;
+        color: $fontInvert;
+        background-image: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,.95) 70%);
+        white-space: nowrap; text-overflow: ellipsis; overflow: hidden;
       }
     }
   }
 
-  .diskBtn{ position: absolute; bottom: -10px; margin:0 5px auto; 
-    transform: translateY(100%);
+  .flowNav{display: none;}
+
+  .diskBtn{
+    position: absolute; margin:0 5px auto; 
+    // transform: translateY(100%);
     &.next{left: auto; right: 0;}
   }
 
-  @media screen and (min-width: $wwMedium){
-    .flowList>li{
-      top: 0; height: calc(100% - 6vw - 60px);
-    }
-  }
 
-  @media screen and (min-width: $wwNormal){
-    .flowList>li{
-      height: calc(100% - 60px);
-    }
-  }
-
-  @media screen and (min-width: $wwMaximum){
-    .flowBox{ width: $wwMaximum*.94; }
-    .flowList>li{width: 100%;
-      // img{ height: calc(100% - 6vw - 140px); width: 100%;}
-      // height: calc(100vh - 6vw);
-      p{margin-left: 70px; margin-right: 70px;}
-    }
-  }
-
-}
-
-// Related Photos 相關照片
-.lightbox.bigPhoto{
-  background-color: transparent; box-shadow: none;
 }
