@@ -1,6 +1,7 @@
 table.formLayout {
-  border-collapse: collapse;line-height: 1.3;padding: 0;margin: 0 auto;
-  width: 100%;
+  border-collapse: collapse;width: 100%;
+  line-height: 1.3;padding: 0;margin: 0 auto;
+  
   td { 
     padding: 4px 0;
     &:nth-child(odd) {
@@ -16,7 +17,8 @@ table.formLayout {
     display: block; width: auto;
     tbody {display: block;}
     tr, td, th {display: block; width: 100%;}
-    td {padding: 1px 0;
+    td {
+      padding: 1px 0;
       &:nth-child(odd) {
         width: 100%;padding: 1.5em 0 0 .8em;
         vertical-align: top;text-align: left; font-weight: bold;
@@ -29,6 +31,9 @@ table.formLayout {
 .btnDv{
   text-align: center; margin: 1em auto; padding: 0 0 1em;
   input{ min-width: 10em;}
+  @media screen and (max-width: $wwMedium - 1) {
+    input{ min-width: 7em;}
+  }
 }
 
 // 日期區間
@@ -73,8 +78,9 @@ table.formLayout {
     .handle{float: right; font-weight: bold; }
   }
   @media screen and (max-width: $wwMedium - 1) {
-    .formLayout{width: 100%;}
+    .formLayout{width: 94%;}
     h3{ width: 100%;}
+    .handle{margin-right: 16px;}
   }
 }
 
