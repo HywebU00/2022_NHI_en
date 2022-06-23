@@ -55,7 +55,6 @@ a:focus{outline: none;}
   }
   @media screen and (min-width: $wwMaximum){
     left: calc(50vw  - #{$wwMaximum}*.5);
-    
   }
 }
 
