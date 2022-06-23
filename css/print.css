@@ -1,0 +1,30 @@
+html {background:none;}
+body {background:none; color:#000;}
+
+.accesskey,
+.goCenter,
+.sidebarCtrl,
+.menu,
+.search,
+.searchCtrl,
+.topLinks,
+.headerImg,
+.webHeader::after,
+.funcBar,
+.lightbox, 
+.seeAlso, 
+.fileDownload,
+.goTop,
+.webFooter { display:none !important;}
+
+.main.inner{ padding-bottom: 50px;}
+
+.webHeader{padding: 15px 0 30px; margin: 0 auto; background: none;}
+
+.photoflow .flowBox{ display: block}
+.photoflow .flowList{ display: block; overflow: hidden;}
+.photoflow .flowList>li{ float: left; width: auto; height: auto; margin: 0 8px 8px 0; border: 1px solid #bbb;}
+.photoflow .flowList>li>a{display: block; width: auto; height: auto;}
+.photoflow .flowList>li img{display: block; width: 160px; height: 160px; object-fit: contain;}
+.photoflow .diskBtn,
+.photoflow .flowNav {display: none;}
