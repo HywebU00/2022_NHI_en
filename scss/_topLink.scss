@@ -29,7 +29,8 @@ $iconH :42px;
 
   @media screen and (min-width: $wwNormal){
     position: absolute; right: 0; top: 0; z-index: 9;
-    padding:40px 60px 20px 8px;
+    // padding:40px 60px 20px 8px;
+    padding:14px 60px 14px 8px;
     background-image: linear-gradient(90deg ,#2a90d1, #00b6d1);
     // 主選單與快速查詢區開關
     .menuCtrl, .searchCtrl{ 
