@@ -23,7 +23,7 @@
       display: -webkit-box; -webkit-box-orient: vertical;
       -webkit-line-clamp: 2; overflow: hidden;
     }
-    .playIcon{ top:50%; }
+    .playIcon{ top:calc(50% - 3px); }
 
     a{
       display: block; text-decoration: none; color: $fontColor;
@@ -110,7 +110,7 @@
     
     // 影音專區
     .videoFlow{
-      flex: 0 0 56vw; width: 56vw; padding-top: 100px;
+      flex: 0 0 56vw; width: 56vw; padding-top: 121px;
       .flowItem {
         .videoThumb{
           margin: 0 auto; // height = width*.625
