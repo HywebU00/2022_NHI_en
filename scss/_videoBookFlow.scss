@@ -106,11 +106,12 @@
   margin: 0 auto;
 
   @media screen and (min-width: $wwNormal){
-    display: flex; flex-flow: row nowrap; width: 100vw;
+    display: flex; flex-flow: row nowrap; 
+    // width: 100vw;
     
     // 影音專區
     .videoFlow{
-      flex: 0 0 56vw; width: 56vw; padding-top: 121px;
+      flex: 0 0 56%; width: 56%; padding-top: 121px;
       .flowItem {
         .videoThumb{
           margin: 0 auto; // height = width*.625
@@ -128,7 +129,7 @@
 
     // 年報
     .booksFlow{
-      flex: 0 0 44vw; width: 44vw; padding-top: 100px;margin-top: -45px;
+      flex: 0 0 44%; width: 44%; padding-top: 100px;margin-top: -45px;
       .flowItem {
         .bookCover{ width: 25vw; height: 35vw; }
         h3{ width: 28vw; }
