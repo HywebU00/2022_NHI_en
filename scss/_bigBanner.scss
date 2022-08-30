@@ -1,6 +1,7 @@
 // 版頭區大圖輪播、
 .bigBanner {
-  position: relative; width: 100vw; 
+  position: relative; 
+  // width: 100vw; 
 
   .slick-list{ position: relative; width: 100%;}
 
@@ -56,7 +57,7 @@
     .slick-list{ width: $wwMaximum; margin: 0 auto; overflow: visible; 
       &::before, &::after{
         content: ''; position: absolute; top: 0; z-index: 19;
-        width: 100vw; height: 100%;
+        height: 100%; width: 100vw;
         background-color: rgba(255,255,255,.7); 
       }
       &::before{left: 0; transform: translateX(-100%);}

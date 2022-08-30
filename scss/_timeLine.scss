@@ -63,11 +63,11 @@
       background-color: $grayLight;
     }
 
-    .container{ margin-left: 4vw; width: 96vw; z-index: 9; }
+    .container{ margin-left: 4%; width: 96%; z-index: 9; }
   }
 
   @media screen and (min-width: $wwNormal){
-    .container{margin-left: 9vw; width: 91vw;}
+    .container{margin-left: 9%; width: 91%;}
   }
 
 

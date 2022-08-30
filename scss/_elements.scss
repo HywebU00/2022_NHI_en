@@ -301,7 +301,7 @@ a:hover .videoThumb{
 
   &.show{bottom: 30px; transition:bottom .8s;}
 
-  @media screen and (min-width: $wwMaximum + 146 ){
+  @media screen and (min-width: calc($wwMaximum + 146px) ){
     right: calc(50% - #{$wwMaximum}/2 - 60px);
   }
 
