@@ -7,16 +7,17 @@
 
   .banner{
     position: relative; overflow: hidden;
-   
     a{ display: block; color: $fontColor;}
-    img{ display: block;width: 100%; height: 120vw; object-fit: cover;
-     
+    img{
+      display: block; object-fit: cover;width: 100%;
+      // height: 120vw;
+      height: 56.25vw; // w:h = 16:9
     }
     .text{
-      position: absolute; bottom: 90px; left: 4vw; right: 4vw;
+      position: absolute; bottom: 30px; left: 4vw; right: 4vw;
       font-weight: bold;
       .heading {
-        font-size: 2.5rem; line-height: 1.1;
+        font-size: 1.8rem; line-height: 1.1;
         display: -webkit-box; -webkit-line-clamp: 2;
         -webkit-box-orient: vertical; overflow: hidden;
       }
@@ -27,12 +28,12 @@
       }
     }
   }
-  .slick-arrow{ top: 36%; 
+  .slick-arrow{ top: 28.125vw; 
     &.slick-prev{ left: 12px;}
     &.slick-next{ right: 12px;}
   }
 
-  .slick-dots{ position: absolute; left: 0; right: 0; bottom: 40px;}
+  .slick-dots{ position: absolute; left: 0; right: 0; bottom: 10px;}
 
   @media screen and (min-width: $wwSlim){
     .slick-arrow{top: 50%;}
@@ -40,16 +41,19 @@
 
   @media screen and (min-width: $wwMedium){
     .banner{
-      img{ height: 56.25vw;} // w:h = 16:9
-      .text{ left: 96px; right: 96px; }
+      // img{ height: 56.25vw;} // w:h = 16:9
+      .text{ left: 96px; right: 96px; bottom: 45px; }
     }
+    .slick-dots{ bottom: 20px;}
   }
 
   @media screen and (min-width: $wwNormal){
     .banner{
-      .text{ bottom: 130px; left: 120px; right: 120px; }
+      .text{ bottom: 120px; left: 120px; right: 120px;
+        .heading{font-size: 2.2rem;}
+      }
     }
-    .slick-dots{ bottom: 76px; }
+    .slick-dots{ bottom: 70px; }
   }
 
   @media screen and (min-width: $wwMaximum){
@@ -69,18 +73,13 @@
         right: auto; left: 9vw;  width: $wwMaximum*.82;
       }
     }
-    // .slick-arrow{
-    //   &.slick-prev{ left: calc( 50vw - #{$wwMaximum}/2 + 15px);}
-    //   &.slick-next{ right: calc( 50vw - #{$wwMaximum}/2 + 15px);}
-    // }
-
 
   }
 
-  @media screen and (min-width: calc( $wwMaximum + 80)){
+  @media screen and (min-width: calc( $wwMaximum + 80px)){
     .slick-arrow{
-      &.slick-prev{ left: 50%; margin-left: -1*$wwMaximum/2 - 32px;}
-      &.slick-next{ right: 50%; margin-right: -1*$wwMaximum/2 - 32px;}
+      &.slick-prev{ left: 50%; margin-left: -.5*$wwMaximum - 32px;}
+      &.slick-next{ right: 50%; margin-right: -.5*$wwMaximum - 32px;}
     }
   }
 

@@ -80,6 +80,18 @@
     }
   }
 
+  .slick-dots {
+    li{
+      button{background-color: rgba(255,255,255,.5);
+        &:hover{background-color: #fff; box-shadow: #fff 0 0 0 1px;}
+      }
+      &.slick-active{
+        button{background-color: #fff; box-shadow: #fff 0 0 0 3px;} 
+      }
+    } 
+  }
+
+
   .slick-arrow { top: 42vw;
     &.slick-prev{left: calc(20vw - 60px);}
     &.slick-next{right: calc(20vw - 60px);}
@@ -91,14 +103,6 @@
     }
   }
   
-  .slick-dots {
-    li{
-      button{background-color: rgba(255,255,255,.5);}
-      &.slick-active{
-        button{background-color: #fff; box-shadow: #fff 0 0 0 2px;} 
-      }
-    } 
-  }
 }
 
 // --------- 兩欄排版
