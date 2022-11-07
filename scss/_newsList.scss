@@ -1,7 +1,9 @@
 // 首頁：Press Room 最新消息
 .newsList{
   padding: 60px 0; 
-  background-color: $grayLight; font-size: 1.125em;
+  background-color: $grayLight; 
+  // font-size: 1.125em;
+  font-size: 1.2em;
   ul{
     width: $mobileWidth; margin: 15px auto 0; padding: 0;
     list-style: none; line-height: 1.5;
