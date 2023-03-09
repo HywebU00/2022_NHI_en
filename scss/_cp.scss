@@ -131,24 +131,56 @@
     &>li{
       position: relative;margin: 5px 0 0; padding: 0 3px 5px;
       border-bottom: 1px solid $borderColor;
-      overflow: hidden;
+      // overflow: hidden;
+
     }
   }
   .fileName{ 
-    display: inline-block;vertical-align: middle;
-    margin-top: .6rem; margin-bottom: .4rem;
-    & + .downloadFiles{ margin-left: 1em;}
+    // outline: 1px solid #fcc6;
+
+    // display: inline-block;vertical-align: middle;
+    display: block;
+    // margin-top: .6rem; 
+    margin-bottom: .4rem;
+    
   }
 
   .downloadFiles{
-    float: right;vertical-align: middle;
-    li{margin-left: 16px;}
+    // outline: 1px solid #fcc6;
+
+    // float: right;vertical-align: middle;
+    li{ margin-left: 16px;
+      &:first-child{ margin-left: 0;}
+    }
     a:hover, a:focus {
       .fileSize{text-decoration: underline;}
     }
 
   }
   .fileType{ display: inline-block; vertical-align: middle;}
+
+  @media screen and (min-width: $wwMedium){
+    &>ul{
+      &>li{
+        display: flex; flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+    }
+
+    .fileName{
+      flex: 1 1 10%;
+      margin-bottom: 0;
+      & + .downloadFiles{ margin-left: 1.5em;}
+    }
+
+    .downloadFiles{
+      flex: 0 1 auto;
+
+      display: flex; flex-flow: row nowrap;
+      li{ white-space: nowrap;}
+    }
+  }
 }
 
 

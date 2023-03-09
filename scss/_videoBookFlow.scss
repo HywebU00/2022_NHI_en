@@ -10,7 +10,7 @@
     .videoThumb{
       position: relative; width: 100%; height: $mobileWidth*.625; overflow: hidden;
       img{
-        display: block; width: 100%; height: 100%; object-fit: cover;
+        display: block; width: 100%; height: 100%; 
         transition: .25s;
       }
 

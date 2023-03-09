@@ -274,7 +274,7 @@ a:hover, a:focus {
   time[title], .visitCount[title], .from[title]{
     display: inline-block; margin: 5px; text-decoration: none;
     &::before{
-      content: attr(title) "：" ; display: inline-block;
+      content: attr(title) ": " ; display: inline-block;
       color: $fontColorLight;  font-size: .92rem;
     }
     &+time, &+.visitCount,  &+.from{ margin-left: 1em;}
