@@ -603,6 +603,7 @@ $(function(){
   var _sidebarMenu = _sidebar.find('.menu');
   var _hasChild = _sidebarMenu.find('.hasChild>a');
   var _sidebarMask = $('.sidebarMask');
+  
   _hasChild.click(
     function(e){
       e.preventDefault();
