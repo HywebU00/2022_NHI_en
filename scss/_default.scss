@@ -12,10 +12,14 @@ body{
 .main{
   position: relative; margin: 0 auto; 
   &.inner{
-    padding: 60px 0 120px;
+    padding: 16px 0 120px;
     @extend %mainWidth;
 
     &.smallFont{ font-size: .9375em;}
     &.largeFont{ font-size: 1.25em;}
+  }
+
+  @media screen and (min-width: $wwNormal){
+    &.inner{padding-top: 30px;}
   }
 }
