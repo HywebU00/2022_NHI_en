@@ -308,7 +308,7 @@ $(function(){
   const lbxSpeed = 400;
 
   _lightbox.before('<div class="coverAll"></div>');
-  _lightbox.append('<button type="button" class="skip"></button>');
+  _lightbox.append('<button type="button" class="skip">Go to the "close light box" button</button>');
   var _cover = $('.coverAll');
   var _skipToClose = _lightbox.find('.skip');
 
@@ -578,7 +578,7 @@ $(function(){
 
   // 寬版「主選單」開合
   var _closeMenu = _menu.find('.closeThis');
-  _menu.append('<button type="button" class="skip"></button>');
+  _menu.append('<button type="button" class="skip">Go to the "close menu" button</button>');
   var _skipMenu = _menu.find('.skip');
   _menuCtrl.click(function(){
     _menu.stop(true, false).fadeIn();
@@ -665,7 +665,7 @@ $(function(){
   // 查詢區開合 -----------------------------------------------------
   var _searchCtrl = $('.searchCtrl');
   var _search = $('.search');
-  _search.append('<button class="skip" type="button"></button>');
+  _search.append('<button class="skip" type="button">Back to search show/hide controller</button>');
   var _skipSearch = _search.find('.skip');
   const srSpeed = 510;
   _searchCtrl.click(function(){

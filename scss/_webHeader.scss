@@ -118,7 +118,7 @@
 
   .skip{
     position: absolute; right: 0; width: 1px; height: 1px;
-    padding: 0; opacity: 0;
+    padding: 0; opacity: 0; overflow: hidden;
   }
 
 
